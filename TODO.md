@@ -6,6 +6,6 @@
     - [ ] Show product number for given category
 * Products:
     - [ ] Filtering?
-    - [ ] Add (button -> new page)
+    - [x] Add (button -> new page)
     - [ ] Edit (button -> new page)
     - [ ] Delete (button)
