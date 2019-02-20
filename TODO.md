@@ -1,6 +1,8 @@
 2 main pages:
 <br>
 * [ ] Categories: html table
+    - [ ] Folder tree
+    - [ ] Show products of current category
     - [ ] Add (button -> new page)
     - [ ] Delete (button)
     - [ ] Edit (button -> new page)
