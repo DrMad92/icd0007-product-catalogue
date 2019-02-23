@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body{
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        table{
+            /* border: solid 1px black; */
+            height: inherit;
+            width: inherit;
+        }
+        #category-tree{
+            border: solid 1px black;
+            height: 100%;
+            width: 20%;
+            vertical-align: top;
+        }
+        #category-view{
+            /* border: solid 1px black; */
+            height: 100%;
+            width: 80%;
+        }
+        #category-list{
+            list-style: none;
+            padding: 0;
+        }
+        #image{
+            height: 100px;
+            width: 100px;
+        }
+        #category-buttons{
+            padding-left: 0%;
+        }
+        .w3-bar-item {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="table-nav" colspan="2">
+                <a href="./products.html">Products</a>
+                <a href="./category.html">Categories</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="category-tree" rowspan="2">
+                    <ul id="category-list">
+                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category1')">Category 1</button></li>
+                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category2')">Category 2</button></li>
+                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category3')">Category 3</button></li>
+                    </ul>
+            </td>
+            <td id="category-buttons" colspan="2">
+                <a href="#Add" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Add</a>
+                <a href="#Delete" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Delete</a>
+                <a href="#Edit" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Edit</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="category-view">
+                <div class="category" id="category1" style="display:none">
+                    <h1>Category 1</h1>
+                    <img src="../img/pic1.jpeg" alt="apple" id="image">
+                    <p>Here appears description of category 1.</p>
+                </div>
+                <div class="category" id="category2" style="display:none">
+                    <h1>Category 2</h1>
+                    <img src="../img/pic1.jpeg" alt="apple" id="image">
+                    <p>Here appears description of category 2.</p>
+                </div>
+                <div class="category" id="category3" style="display:none">
+                    <h1>Category 3</h1>
+                    <img src="../img/pic1.jpeg" alt="apple" id="image">
+                    <p>Here appears description of category 3.</p>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function openCategory(categoryName) {
+            var i;
+            var x = document.getElementsByClassName("category");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            document.getElementById(categoryName).style.display = "block"; 
+        }
+    </script>
+</body>
+<footer></footer>
