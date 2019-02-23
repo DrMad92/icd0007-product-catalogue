@@ -1,0 +1,46 @@
+body {
+    font: 12px;
+}
+
+input.input-text {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
+    background: #fff;
+    font: 12px arial,helvetica,sans-serif;
+}
+
+input, select{
+    vertical-align: middle;
+}
+
+.grid tr.filter .range input {
+    float: right;
+    width: 50px !important;
+    margin-top: 0;
+}
+
+.grid tr.headings th span.sort-title {
+    display: block;
+    padding: 3px 12px 4px 0;
+    line-height: 1;
+}
+
+.grid tr.filter .range .label {
+    display: block;
+    width: 36px;
+    float: left;
+    padding-left: 2px;
+}
+
+.grid th{
+    padding: 2px 4px 2px 4px;
+}
+
+.grid tr.filter th{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid #bdbdbd;
+    border-width: 0 1px 1px 0;
+    white-space: normal;
+}
