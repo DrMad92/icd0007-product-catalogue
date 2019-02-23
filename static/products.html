@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="style/core.css"/>
+<header>
+    <nav>
+        <a href="../static/products.html">Products</a>
+        <a href="../static/category.html">Categories</a>
+    </nav>
+</header>
+<body>
+    <div>
+    <div id="productGrid">
+    <table id="productGrid_table" class="data" cellspacing="0" border="1">
+        <colgroup>
+            <col class="a-center" width="20">
+            <col width="50">
+            <col>
+            <col width="60">
+            <col width="100">
+            <col width="80">
+            <col width="100">
+            <col width="100">
+            <col width="50">
+        </colgroup>
+        <thead>
+            <tr class="headings">
+                <th>
+                    <span class="nobr"></span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="sort-arrow-desc" href="#" name="product_id" title="asc"> <!--jscript-->
+                                <span class="sort-title">ID</span>
+                        </a>
+                    </span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="name" title="asc">
+                                <span class="sort-title">Name</span>
+                        </a>
+                    </span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="category_name" title="asc">
+                            <span class="sort-title">Category Name</span>
+                        </a>
+                            </span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="sku" title="asc">
+                                <span class="sort-title">SKU</span>
+                        </a>
+                    </span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="price" title="asc">
+                                <span class="sort-title">Price</span>
+                        </a>
+                    </span>
+                </th>
+                <th>
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="quantity" title="asc">
+                            <span class="sort-title">Quantity</span>
+                        </a>
+                    </span>
+                </th>
+                <th class="no-link-last">
+                    <span class="nobr">
+                        <a class="not-sort" href="#" name="edit" title="asc">
+                            <span class="sort-title">Edit</span>
+                        </a>
+                    </span>
+                </th>                         
+            </tr>
+        <tr class="filter">
+            <th>
+                <span class="head-massaction">
+                    <select id="productGrid_product_filter_massaction" class="no-changes" name="massaction">
+                        <option value="">Any</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </span>
+            </th>
+            <th>
+                <div class="range">
+                    <div class="range-line">
+                        <span class="label">From:</span>
+                        <input type="text" name="entity_id[from]" id="productGrid_product_filter_entity_id_from" value="" class="input-text no-changes" type="text" name="product_id[from]" value="">
+                    </div>
+                    <div class="range-line">
+                        <span class="label">To:</span>
+                        <input id="productGrid_product_filter_entity_id_from" class="input-text no-changes" type="text" name="product_id[to]" value="">
+                    </div>
+                </div>
+            </th>
+            <th>
+                <div class="field-name">
+                    <input id="productGrid_product_filter_name" class="input-text no-changes" type="text" name="name" value="">
+                </div>
+            </th>
+            <th>
+                <select id="productGrid_product_set_name" class="no-changes" name="set_name"> <!--Event
+                    function(event) {
+                    Event.extend(event, element);
+                    handler.call(element, event);
+                  }---->
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                    <option value=""></option>
+                </select>
+            </th>
+            <th>
+                <div class="field-sku">
+                    <input id="prodcutGrid_prodcut_filter_sku" class="input-text no-changes" type="text" name="sku" value="">
+                </div>
+            </th>
+            <th>
+                <div class="range-line">
+                    <span class="label">From:</span>
+                    <input id="productGrid_product_filter_price_from" class="input-text no-changes" type="text" name="price[from]" value="">
+                </div>
+                <div class="range-line">
+                    <span class="label">To :</span>
+                    <input id="productGrid_product_filter_price_to" class="input-text no-changes" type="text" name="price[to]" value="">            
+                </div>
+            </th>
+            <th>
+                <div class="range">
+                <div class="range-line">
+                    <span class="label">From:</span>
+                    <input id="prodcutGrid_product_filter_quantity_from" class="input-text no-changes" type="text" name="quantity[from]" value="">
+                </div>
+                <div class="range-line">
+                    <span class="label">To :</span>
+                    <input id="productGrid_product_filter_quantity_to" class="input-text no-changes" type="text" name="quantity[to]" value="">
+                </div>
+                </div>
+            </th>
+            <th class="no-link-last">
+                
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="a-center">
+                    <input class="massaction-checkbox" type="checkbox" name="product" value="">
+                </td>
+                <td class="a-right">905</td>
+                <td class="">Plaid Cotton Shirt-Royal Blue L</td>
+                <td class="">Clothing</td>
+                <td class="">msj006c-Royal Blue-L</td>
+                <td class="a-right">160.00</td>
+                <td class="a-right">100</td>
+                <td class="last">
+                    <a href="#">Edit</a>
+                </td>
+            </tr>
+            <tr>
+                    <td class="a-center">
+                        <input class="massaction-checkbox" type="checkbox" name="product" value="">
+                    </td>
+                    <td class="a-right">905</td>
+                    <td class="">Plaid Cotton Shirt-Royal Blue L</td>
+                    <td class="">Clothing</td>
+                    <td class="">msj006c-Royal Blue-L</td>
+                    <td class="a-right">160.00</td>
+                    <td class="a-right">100</td>
+                    <td class="last">
+                        <a href="#">Edit</a>
+                    </td>
+                </tr>
+                <tr>
+                        <td class="a-center">
+                            <input class="massaction-checkbox" type="checkbox" name="product" value="">
+                        </td>
+                        <td class="a-right">905</td>
+                        <td class="">Plaid Cotton Shirt-Royal Blue L</td>
+                        <td class="">Clothing</td>
+                        <td class="">msj006c-Royal Blue-L</td>
+                        <td class="a-right">160.00</td>
+                        <td class="a-right">100</td>
+                        <td class="last">
+                            <a href="#">Edit</a>
+                        </td>
+                    </tr>                            
+        </tbody>
+
+    </table>
+    </div>
+    </div>
+    <footer>
+            <p>
+                This is product table.
+            </p>
+        </footer>
+</body>
