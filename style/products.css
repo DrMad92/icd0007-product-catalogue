@@ -1,4 +1,7 @@
+@import "utf-8";
 body {
+    
+    margin: 5px;
     font: 12px;
 }
 
@@ -40,8 +43,7 @@ input, select{
 .grid tr.filter th{
     padding-top: 5px;
     padding-bottom: 5px;
-    border: 1px solid #bdbdbd;
-    border-width: 0 1px 1px 0;
+    border: 1px solid black;
     white-space: normal;
 }
 
