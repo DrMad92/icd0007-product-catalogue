@@ -16,7 +16,7 @@ input, select{
 
 .grid tr.filter .range input {
     float: right;
-    width: 50px !important;
+    width: 70px !important;
     margin-top: 0;
 }
 

@@ -7,19 +7,18 @@
     </nav>
 </header>
 <body>
-    <div>
+    <div class="grid">
     <div id="productGrid">
     <table id="productGrid_table" class="data" cellspacing="0" border="1">
         <colgroup>
             <col class="a-center" width="20">
-            <col width="50">
+            <col width="130">
             <col>
             <col width="60">
             <col width="100">
-            <col width="80">
+            <col width="130">
+            <col width="130">
             <col width="100">
-            <col width="100">
-            <col width="50">
         </colgroup>
         <thead>
             <tr class="headings">
@@ -123,6 +122,7 @@
                 </div>
             </th>
             <th>
+                <div class="range">
                 <div class="range-line">
                     <span class="label">From:</span>
                     <input id="productGrid_product_filter_price_from" class="input-text no-changes" type="text" name="price[from]" value="">
@@ -131,6 +131,7 @@
                     <span class="label">To :</span>
                     <input id="productGrid_product_filter_price_to" class="input-text no-changes" type="text" name="price[to]" value="">            
                 </div>
+            </div>
             </th>
             <th>
                 <div class="range">
