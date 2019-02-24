@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="../style/categories.css">
-    <style>
-       
-    </style>
 </head>
 <body>
-    <table>
+    <table border="1">
         <tr>
-            <td id="table-nav" colspan="2">
-                <a href="./products.html">Products</a>
-                <a href="./category.html">Categories</a>
+            <td id="category-buttons">
+                <a href="#Add" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                    &#10133
+                    <span class="tooltiptext">
+                        Add category
+                    </span>
+                </a>
+                <a href="#Delete" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                    &#10134
+                    <span class="tooltiptext">
+                        Delete category
+                    </span>
+                </a>
+                <a href="#Edit" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                    &#9998
+                    <span class="tooltiptext">
+                        Edit category
+                    </span>
+                </a>
+            </td>
+            <td id="category-title">
+                    <div class="category" id="welcome-title" style="display:block">
+                        <h1>Product catalogue</h1>
+                    </div>
+                    <div class="category" id="category1-title" style="display:none">
+                        <h1>Category 1</h1>
+                    </div>
+                    <div class="category" id="category2-title" style="display:none">
+                        <h1>Category 2</h1>
+                    </div>
+                    <div class="category" id="category3-title" style="display:none">
+                        <h1>Category 3</h1>
+                    </div>
             </td>
         </tr>
         <tr>
@@ -22,28 +50,20 @@
                         <li><button class="w3-bar-item w3-button" onclick="openCategory('category3')">Category 3</button></li>
                     </ul>
             </td>
-            <td id="category-buttons" colspan="2">
-                <a href="#Add" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Add</a>
-                <a href="#Delete" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Delete</a>
-                <a href="#Edit" class="w3-btn w3-white w3-border w3-border-red w3-text-red w3-round-large">Edit</a>
-            </td>
         </tr>
         <tr>
             <td id="category-view">
                 <div class="category" id="category1" style="display:none">
-                    <h1>Category 1</h1>
-                    <img src="../img/pic1.jpeg" alt="apple" id="image">
-                    <p>Here appears description of category 1.</p>
+                    <!-- Call products.php -->
+                    <iframe src="./products.html#category1" frameborder="0"></iframe>
                 </div>
                 <div class="category" id="category2" style="display:none">
-                    <h1>Category 2</h1>
-                    <img src="../img/pic1.jpeg" alt="apple" id="image">
-                    <p>Here appears description of category 2.</p>
+                    <!-- Call products.php -->
+                    <iframe src="./products.html#category4" frameborder="0"></iframe>
                 </div>
                 <div class="category" id="category3" style="display:none">
-                    <h1>Category 3</h1>
-                    <img src="../img/pic1.jpeg" alt="apple" id="image">
-                    <p>Here appears description of category 3.</p>
+                    <!-- Call products.php -->
+                    <iframe src="./products.html#category3" frameborder="0"></iframe>
                 </div>
             </td>
         </tr>
@@ -55,7 +75,8 @@
             for (i = 0; i < x.length; i++) {
                 x[i].style.display = "none"; 
             }
-            document.getElementById(categoryName).style.display = "block"; 
+            document.getElementById(categoryName).style.display = "block";
+            document.getElementById(categoryName + '-title').style.display = "block"; 
         }
     </script>
 </body>
