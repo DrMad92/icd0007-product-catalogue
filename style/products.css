@@ -1,62 +1,33 @@
-@charset "UTF-8";
 body {
-    
-    margin: 5px;
-    font: 12px;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-family: helvetica neue,Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    background-color: #fff;
 }
 
-input.input-text {
-    border-width: 1px;
-    border-style: solid;
-    border-color: #aaa #c8c8c8 #c8c8c8 #aaa;
-    background: #fff;
-    font: 12px arial,helvetica,sans-serif;
+#container{
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    background: #f6f6f6;
+    overflow: hidden;
 }
 
-input, select{
-    vertical-align: middle;
+.container-fluid{
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.grid tr.filter .range input {
-    float: right;
-    width: 70px !important;
-    margin-top: 0;
-}
-
-.grid tr.headings th span.sort-title {
-    display: block;
-    padding: 3px 12px 4px 0;
-    line-height: 1;
-}
-
-.grid tr.filter .range .label {
-    display: block;
-    width: 36px;
-    float: left;
-    padding-left: 2px;
-}
-
-.grid th{
-    padding: 2px 4px 2px 4px;
-}
-
-.grid tr.filter th{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border: 1px solid black;
-    white-space: normal;
-}
-
-a.not-sort, a.sort-arrow-desc {
-    text-decoration: none;
-}
-
-.btn{
-    background-color: #4CAF50;
-    color: white;
-}
-
-a:hover{
-    background-color: #ddd;
-    color: black;
+.img-thumbnail{
+    padding: 4px; 
+    background-color: #fff;    
+    border: 1px solid #ddd;    
+    border-radius: 3px;       
+    display: inline-block;    
+    max-width: 100%;    
+    height: auto;
 }

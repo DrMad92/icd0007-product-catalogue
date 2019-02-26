@@ -1,206 +1,279 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="../style/products.css"/>
-<!-- <link rel="stylesheet" type="text/css" href=""> -->
-<header>
-    <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../code/products2.css"/>
+<head>
+    <meta charset="utf-8">
+    <title>Products</title>
     <nav>
-        <a href="../static/products.html">Products</a>
-        <!--<a href="../static/category.html">Categories</a>-->
-        <!--<a href="#" class="btn">Add &#43</a>-->
+    <!---   <a href="../static/products.html">Products</a>
+            <a href="../static/category.html">Categories</a>
+            <a href="#" class="btn">Add &#43</a>        
+
+        buraya solda menü koysak ?                -->
     </nav>
-
-</header>
+</head>
 <body>
-    <div class="grid">
-    <div id="productGrid">
-    <table id="productGrid-table" class="data" cellspacing="0" border="1">
-        <colgroup>
-            <col class="a-center" width="20">
-            <col width="130">
-            <col>
-            <col width="60">
-            <col width="100">
-            <col width="130">
-            <col width="130">
-            <col width="100">
-        </colgroup>
-        <thead>
-            <tr class="headings">
-                <th>
-                    <span class="nobr"></span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="sort-arrow-desc" href="#" name="product-id" title="asc"> <!--jscript-->
-                                <span class="sort-title">ID</span>
-                        </a>
-                    </span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="name" title="asc">
-                                <span class="sort-title">Name</span>
-                        </a>
-                    </span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="category-name" title="asc">
-                            <span class="sort-title">Category Name</span>
-                        </a>
-                            </span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="sku" title="asc">
-                                <span class="sort-title">SKU</span>
-                        </a>
-                    </span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="price" title="asc">
-                                <span class="sort-title">Price</span>
-                        </a>
-                    </span>
-                </th>
-                <th>
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="quantity" title="asc">
-                            <span class="sort-title">Quantity</span>
-                        </a>
-                    </span>
-                </th>
-                <th class="no-link-last">
-                    <span class="nobr">
-                        <a class="not-sort" href="#" name="edit" title="asc">
-                            <span class="sort-title">Edit</span>
-                        </a>
-                    </span>
-                </th>                         
-            </tr>
-        <tr class="filter">
-            <th>
-                <span class="head-massaction">
-                    <select id="productGrid-product-filter-massaction" class="no-changes" name="massaction">
-                        <option value="">Any</option>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </span>
-            </th>
-            <th>
-                <div class="range">
-                    <div class="range-line">
-                        <span class="label">From:</span>
-                        <input type="text" name="product-id[from]" id="productGrid-product-filter-product-id-from" value="" class="input-text" type="text" name="product-id[from]" value="">
-                    </div>
-                    <div class="range-line">
-                        <span class="label">To:</span>
-                        <input id="productGrid-product-filter-product-id-from" class="input-text" type="text" name="product-id[to]" value="">
-                    </div>
-                </div>
-            </th>
-            <th>
-                <div class="field-name">
-                    <input id="productGrid-product-filter-name" class="input-text" type="text" name="name" value="">
-                </div>
-            </th>
-            <th>
-                <select id="productGrid-product-category-name" class="no-changes" name="category-name">
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
-            </th>
-            <th>
-                <div class="field-sku">
-                    <input id="prodcutGrid-prodcut-filter-sku" class="input-text" type="text" name="sku" value="">
-                </div>
-            </th>
-            <th>
-                <div class="range">
-                <div class="range-line">
-                    <span class="label">From:</span>
-                    <input id="productGrid-product-filter-price-from" class="input-text" type="text" name="price[from]" value="">
-                </div>
-                <div class="range-line">
-                    <span class="label">To :</span>
-                    <input id="productGrid-product-filter-price-to" class="input-text" type="text" name="price[to]" value="">            
-                </div>
+<div id="container">
+    <header id="header" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <div id="header-picture" class="navbar-header">
+                <a class="navbar-picture" href="../code/products2.html">
+                    <!-- img to top left corner -->
+                    <img src="#" alt="Product Catalogue" title="Product Catalogue">
+                </a>
             </div>
-            </th>
-            <th>
-                <div class="range">
-                <div class="range-line">
-                    <span class="label">From:</span>
-                    <input id="prodcutGrid-product-filter-quantity-from" class="input-text" type="text" name="quantity[from]" value="">
-                </div>
-                <div class="range-line">
-                    <span class="label">To :</span>
-                    <input id="productGrid-product-filter-quantity-to" class="input-text" type="text" name="quantity[to]" value="">
-                </div>
-                </div>
-            </th>
-            <th class="no-link-last">
-                
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="a-center">
-                    <input class="massaction-checkbox" type="checkbox" name="product" value="">
-                </td>
-                <td class="a-right">905</td>
-                <td class="">Plaid Cotton Shirt-Royal Blue L</td>
-                <td class="">Clothing</td>
-                <td class="">msj006c-Royal Blue-L</td>
-                <td class="a-right">160.00</td>
-                <td class="a-right">100</td>
-                <td class="last">
-                    <a href="#">Edit</a>
-                </td>
-            </tr>
-            <tr>
-                    <td class="a-center">
-                        <input class="massaction-checkbox" type="checkbox" name="product" value="">
-                    </td>
-                    <td class="a-right">905</td>
-                    <td class="">Plaid Cotton Shirt-Royal Blue L</td>
-                    <td class="">Clothing</td>
-                    <td class="">msj006c-Royal Blue-L</td>
-                    <td class="a-right">160.00</td>
-                    <td class="a-right">100</td>
-                    <td class="last">
-                        <a href="#">Edit</a>
-                    </td>
-                </tr>
-                <tr>
-                        <td class="a-center">
-                            <input class="massaction-checkbox" type="checkbox" name="product" value="">
-                        </td>
-                        <td class="a-right">905</td>
-                        <td class="">Plaid Cotton Shirt-Royal Blue L</td>
-                        <td class="">Clothing</td>
-                        <td class="">msj006c-Royal Blue-L</td>
-                        <td class="a-right">160.00</td>
-                        <td class="a-right">100</td>
-                        <td class="last">
-                            <a href="#">Edit</a>
-                        </td>
-                    </tr>                            
-        </tbody>
-
-    </table>
-    </div>
-    </div>
-    <footer>
-            <p>
-                This is product table.
-            </p>
-        </footer>
+        </div>
+    </header>
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <div class="pull-right"> <!-- Buttons to put right side -->
+                <button class="" type="button">Filter</button>
+                <button class="" type="button">Add New</button>
+                <button class="" type="button">Delete</button>
+            </div>
+            <h1>Products2</h1>
+        </div>
+            <div class="container-fluid">
+                <form id="form-product">
+                    <div class="responsive-table">
+                        <table class="table table-border table-hover">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" onclick=""> <!-- should select all products onclick -->
+                                    </td>
+                                    <td class="text-center">
+                                        Image
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc"> Product ID</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc">Product Name</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc">Category Name</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc">SKU</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc">Price</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="asc" href="#" title="asc">Quantity</a>
+                                    </td>
+                                    <td class="text-center">
+                                        Edit
+                                    </td>          
+                                </tr>
+                                <tr class="filter">
+                                    <td class="text-center">
+                                        <input type="checkbox" onclick=""> <!-- should select all products onclick -->
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="checkbox" onclick=""> <!-- should select all products onclick -->
+                                    </td>
+                                    <td>
+                                        <div class="range-line">
+                                            <span class="label">From:</span>
+                                            <input type="text" name="product-id[from]" id="product-filter-product-id-from" value="" class="input-text" type="text" name="product-id[from]" value="">
+                                        </div>
+                                        <div class="range-line">
+                                            <span class="label">To:</span>
+                                            <input id="product-filter-product-id-to" class="input-text" type="text" name="product-id[to]" value="">
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <div class="field-name">
+                                            <input id="product-filter-name" class="input-text" type="text" name="name" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <select id="category-name" class="no-changes" name="category-name">
+                                        <option value="">Cloths</option>
+                                        <option value="">Decoration</option>
+                                        <option value="">Electronics</option>
+                                        <option value="">Computers</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <div class="field-sku">
+                                            <input id="prodcut-filter-sku" class="input-text" type="text" name="sku" value="">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="range">
+                                        <div class="range-line">
+                                            <span class="label">From:</span>
+                                            <input id="product-filter-price-from" class="input-text" type="text" name="price[from]" value="">
+                                        </div>
+                                        <div class="range-line">
+                                            <span class="label">To :</span>
+                                            <input id="product-filter-price-to" class="input-text" type="text" name="price[to]" value="">            
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="range">
+                                        <div class="range-line">
+                                            <span class="label">From:</span>
+                                            <input id="product-filter-quantity-from" class="input-text" type="text" name="quantity[from]" value="">
+                                        </div>
+                                        <div class="range-line">
+                                            <span class="label">To :</span>
+                                            <input id="product-filter-quantity-to" class="input-text" type="text" name="quantity[to]" value="">
+                                        </div>
+                                        </div>
+                                    </td>
+                                    <td class="no-link-last"></td>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="selected[]" value="" />
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../code/bg.jpg" alt="" class="img-thumbnail" width="60" height="60"/>
+                                    </td>
+                                    <!-- product id -->
+                                    <td class="text-center">
+                                        905
+                                    </td>
+                                    <!-- product name -->
+                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
+                                    <!-- category name-->
+                                    <td class="text-center">Cloth</td>
+                                    <!-- SKU -->
+                                    <td class="text-center">
+                                        <span class="">msj006c-Royal Blue-L</span>
+                                    </td>
+                                    <!-- price -->
+                                    <td class="text-center">
+                                        <span class="">160.00</span>
+                                    </td>
+                                    <!-- quantity -->
+                                    <td class="text-center">
+                                            <span class="">100</span>
+                                    </td>
+                                    <td>
+                                        <button class="" type="button">
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="selected[]" value="" />
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../code/indir.jpg" alt="" class="img-thumbnail" width="60" height="60"/>
+                                    </td>
+                                    <!-- product id -->
+                                    <td class="text-center">
+                                        905
+                                    </td>
+                                        <!-- product name -->
+                                        <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
+                                        <!-- category name-->
+                                        <td class="text-center">Cloth</td>
+                                        <!-- SKU -->
+                                        <td class="text-center">
+                                            <span class="">msj006c-Royal Blue-L</span>
+                                        </td>
+                                        <!-- price -->
+                                        <td class="text-center">
+                                            <span class="">160.00</span>
+                                        </td>
+                                        <!-- quantity -->
+                                        <td class="text-center">
+                                                <span class="">100</span>
+                                        </td>
+                                        <td>
+                                            <button class="" type="button">
+                                                Edit
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                    <td class="text-center">
+                                    <input type="checkbox" name="selected[]" value="" />
+                                    </td>
+                                    <td class="text-center">
+                                    <img src="" alt="" class="img-thumbnail"/>
+                                    </td>
+                                    <!-- product id -->
+                                    <td class="text-center">
+                                    905
+                                    </td>
+                                    <!-- product name -->
+                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
+                                    <!-- category name-->
+                                    <td class="text-center">Cloth</td>
+                                    <!-- SKU -->
+                                    <td class="text-center">
+                                    <span class="">msj006c-Royal Blue-L</span>
+                                    </td>
+                                    <!-- price -->
+                                    <td class="text-center">
+                                    <span class="">160.00</span>
+                                    </td>
+                                    <!-- quantity -->
+                                    <td class="text-center">
+                                    <span class="">100</span>
+                                    </td>
+                                    <td>
+                                    <button class="" type="button">
+                                    Edit
+                                    </button>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td class="text-center">
+                                    <input type="checkbox" name="selected[]" value="" />
+                                    </td>
+                                    <td class="text-center">
+                                    <img src="" alt="" class="img-thumbnail" />
+                                    </td>
+                                    <!-- product id -->
+                                    <td class="text-center">
+                                    905
+                                    </td>
+                                    <!-- product name -->
+                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
+                                    <!-- category name-->
+                                    <td class="text-center">Cloth</td>
+                                    <!-- SKU -->
+                                    <td class="text-center">
+                                    <span class="">msj006c-Royal Blue-L</span>
+                                    </td>
+                                    <!-- price -->
+                                    <td class="text-center">
+                                    <span class="">160.00</span>
+                                    </td>
+                                    <!-- quantity -->
+                                    <td class="text-center">
+                                    <span class="">100</span>
+                                    </td>
+                                    <td>
+                                    <button class="" type="button">
+                                    Edit
+                                    </button>
+                                    </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+</div>
+<footer>
+<p>
+This is product table.
+</p>
+</footer>
 </body>
+</html>
