@@ -1,0 +1,33 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #545454;
+    font-family: helvetica neue,Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    background-color: #fff;
+}
+
+#container{
+    min-height: 100%;
+    width: 100%;
+    position: relative;
+    background: #f6f6f6;
+    overflow: hidden;
+}
+
+.container-fluid{
+    padding: 0 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-thumbnail{
+    padding: 4px; 
+    background-color: #fff;    
+    border: 1px solid #ddd;    
+    border-radius: 3px;       
+    display: inline-block;    
+    max-width: 100%;    
+    height: auto;
+}
