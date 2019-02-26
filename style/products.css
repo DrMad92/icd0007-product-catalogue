@@ -50,3 +50,13 @@ input, select{
 a.not-sort, a.sort-arrow-desc {
     text-decoration: none;
 }
+
+.btn{
+    background-color: #4CAF50;
+    color: white;
+}
+
+a:hover{
+    background-color: #ddd;
+    color: black;
+}
