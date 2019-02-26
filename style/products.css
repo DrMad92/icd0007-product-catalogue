@@ -31,3 +31,11 @@ body {
     max-width: 100%;    
     height: auto;
 }
+
+a{
+    text-decoration: none;
+}
+
+.resize-product-id{
+    width: 5px;
+}
