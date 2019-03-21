@@ -55,15 +55,12 @@
             <td id="category-view">
                 <div class="category" id="category1" style="display:none">
                     <!-- Call products.php -->
-                    <iframe src="./products.html#category1" frameborder="0"></iframe>
                 </div>
                 <div class="category" id="category2" style="display:none">
                     <!-- Call products.php -->
-                    <iframe src="./products.html#category4" frameborder="0"></iframe>
                 </div>
                 <div class="category" id="category3" style="display:none">
                     <!-- Call products.php -->
-                    <iframe src="./products.html#category3" frameborder="0"></iframe>
                 </div>
             </td>
         </tr>
@@ -76,7 +73,11 @@
                 x[i].style.display = "none"; 
             }
             document.getElementById(categoryName).style.display = "block";
-            document.getElementById(categoryName + '-title').style.display = "block"; 
+            document.getElementById(categoryName + '-title').style.display = "block";
+            load_products(categoryName)
+        }
+        function load_products(categoryName) {
+            document.getElementById(categoryName).innerHTML='<object type="text/html" data="./products.html" ></object>';
         }
     </script>
 </body>
