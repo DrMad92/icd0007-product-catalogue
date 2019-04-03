@@ -1,6 +1,6 @@
 # Description
 
-Web technologies project.
+Web technologies course project. Product catalogue, table of categories, each category contains list of products. Category and products can be added, removed or edited.
 
 ## Students
 
@@ -8,6 +8,12 @@ Web technologies project.
 * Cem Hasgoren - 184048IVSB
 
 ## Installation
+
+Use `composer` for dependency management.  
+Composer for Linux/Unix/MacOS: [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)  
+Composer for Windows: [here](https://getcomposer.org/doc/00-intro.md#installation-windows)
+
+Linux project setup:  
 
 ```bash
 git clone https://gitlab.pld.ttu.ee/mumadr/icd0007-product-catalogue/`  
