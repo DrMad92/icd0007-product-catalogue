@@ -16,7 +16,7 @@ Composer for Windows: [here](https://getcomposer.org/doc/00-intro.md#installatio
 Linux project setup:  
 
 ```bash
-git clone https://gitlab.pld.ttu.ee/mumadr/icd0007-product-catalogue/`  
-cd icd0007-product-catalogue`  
+git clone https://gitlab.pld.ttu.ee/mumadr/icd0007-product-catalogue/
+cd icd0007-product-catalogue
 composer install
 ```
