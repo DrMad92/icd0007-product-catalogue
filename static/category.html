@@ -2,18 +2,34 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="../style/categories.css">
+    <link rel="stylesheet" href="style/categories.css">
+    <link rel="stylesheet" href="style/add_category.css">
 </head>
 <body>
     <table border="1">
         <tr>
             <td id="category-buttons">
-                <a href="#Add" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                <a href="#Add" onclick="openForm('addForm')" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10133
                     <span class="tooltiptext">
                         Add category
                     </span>
                 </a>
+                <div class="blackout" id="addForm">
+                    <div class="form-popup">
+                        <form action="src/action_category.php" class="form-container" method="POST">
+                            <h1>Add category</h1>
+                            <label for="name"><b>Name</b></label>
+                            <input type="text" placeholder="Enter category name" name="name" required>
+                        
+                            <label for="sub-list"><b>Subcategory list</b></label>
+                            <input type="text" placeholder="Enter subcategory list" name="sub-list" required>
+                        
+                            <button type="submit" class="btn">Add</button>
+                            <button type="submit" class="btn cancel" onclick="closeForm('addForm')">Close</button>
+                        </form>
+                    </div>
+                </div>
                 <a href="#Delete" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10134
                     <span class="tooltiptext">
@@ -31,37 +47,29 @@
                     <div class="category" id="welcome-title" style="display:block">
                         <h1>Product catalogue</h1>
                     </div>
-                    <div class="category" id="category1-title" style="display:none">
-                        <h1>Category 1</h1>
+                    {% for category in categoryList %}
+                    <div class="category" id="{{ category.titleID }}" style="display:none">
+                        <h1>{{ category.name }}</h1>
                     </div>
-                    <div class="category" id="category2-title" style="display:none">
-                        <h1>Category 2</h1>
-                    </div>
-                    <div class="category" id="category3-title" style="display:none">
-                        <h1>Category 3</h1>
-                    </div>
+                    {% endfor %}
             </td>
         </tr>
         <tr>
             <td id="category-tree" rowspan="2">
                     <ul id="category-list">
-                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category1')">Category 1</button></li>
-                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category2')">Category 2</button></li>
-                        <li><button class="w3-bar-item w3-button" onclick="openCategory('category3')">Category 3</button></li>
+                        {% for category in categoryList %}
+                        <li><button class="w3-bar-item w3-button" onclick="openCategory('{{ category.id }}')">{{ category.name }}</button></li>
+                        {% endfor %}
                     </ul>
             </td>
         </tr>
         <tr>
             <td id="category-view">
-                <div class="category" id="category1" style="display:none">
-                    <!-- Call products.php -->
+                {% for category in categoryList %}
+                <div class="category" id="{{ category.id }}" style="display:none">
+                        <!-- Call products.php -->                
                 </div>
-                <div class="category" id="category2" style="display:none">
-                    <!-- Call products.php -->
-                </div>
-                <div class="category" id="category3" style="display:none">
-                    <!-- Call products.php -->
-                </div>
+                {% endfor %}
             </td>
         </tr>
     </table>
@@ -77,7 +85,14 @@
             load_products(categoryName)
         }
         function load_products(categoryName) {
-            document.getElementById(categoryName).innerHTML='<object type="text/html" data="./products.html" ></object>';
+            document.getElementById(categoryName).innerHTML='<object type="text/html" data="static/products.html" ></object>';
+        }
+        function openForm(id) {
+            document.getElementById(id).style.display = "block";
+        }
+
+        function closeForm(id) {
+            document.getElementById(id).style.display = "none";
         }
     </script>
 </body>
