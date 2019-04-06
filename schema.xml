@@ -1,0 +1,31 @@
+<database name="default" defaultIdMethod="native"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd"
+          namespace="ProductManager"
+        >
+
+    <table name="category" phpName="Category">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="65" required="true"/>
+    </table>
+
+    <table name="subcategory" phpName="Subcategory">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="65" required="true"/>
+    </table>
+
+    <table name="category_subcategory" phpName="CategorySubcategory">
+        <foreign-key foreignTable="category">
+            <reference local="category_id" foreign="id"/>
+        </foreign-key>
+        <foreign-key foreignTable="subcategory">
+            <reference local="subcategory_id" foreign="id"/>
+        </foreign-key>
+    </table>
+    
+    <table name="product" phpName="Product">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="name" type="varchar" size="65" required="true"/>
+        <column name="productID" type="varchar" size="65"/>
+    </table>
+</database>
