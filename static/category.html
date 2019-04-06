@@ -66,6 +66,9 @@
         </tr>
         <tr>
             <td id="category-view">
+                <div class="category" style="display:block">
+                        <object type="text/html" data="static/products.html" ></object>                
+                </div>
                 {% for category in categoryList %}
                 <div class="category" id="{{ category.id }}" style="display:none">
                         <!-- Call products.php -->                
