@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -9,7 +10,7 @@
     <table border="1">
         <tr>
             <td id="category-buttons">
-                <a href="#Add" onclick="openForm('addForm')" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                <a onclick="openForm('addForm')" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10133
                     <span class="tooltiptext">
                         Add category
@@ -26,7 +27,7 @@
                             <input type="text" placeholder="Enter subcategory list" name="sub-list" required>
                         
                             <button type="submit" class="btn">Add</button>
-                            <button type="submit" class="btn cancel" onclick="closeForm('addForm')">Close</button>
+                            <button type="button" class="btn cancel" onclick="closeForm('addForm')">Close</button>
                         </form>
                     </div>
                 </div>
@@ -96,4 +97,4 @@
         }
     </script>
 </body>
-<footer></footer>
+</html>
