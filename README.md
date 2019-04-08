@@ -20,3 +20,7 @@ git clone https://gitlab.pld.ttu.ee/mumadr/icd0007-product-catalogue/
 cd icd0007-product-catalogue
 composer install
 ```
+
+Propel ORM setup:  
+For propel database connection settings: [link](http://propelorm.org/documentation/02-buildtime.html#building-the-model)  
+For propel `config.php`: [link](http://propelorm.org/documentation/02-buildtime.html#runtime-connection-settings)

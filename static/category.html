@@ -59,7 +59,7 @@
             <td id="category-tree" rowspan="2">
                     <ul id="category-list">
                         {% for category in categoryList %}
-                        <li><button class="w3-bar-item w3-button" onclick="openCategory('{{ category.id }}')">{{ category.name }}</button></li>
+                        <li><button class="w3-bar-item w3-button" onclick="openCategory('{{ category.treeID }}')">{{ category.name }}</button></li>
                         {% endfor %}
                     </ul>
             </td>
@@ -70,7 +70,7 @@
                         <object type="text/html" data="static/products.html" ></object>                
                 </div>
                 {% for category in categoryList %}
-                <div class="category" id="{{ category.id }}" style="display:none">
+                <div class="category" id="{{ category.treeID }}" style="display:none">
                         <!-- Call products.php -->                
                 </div>
                 {% endfor %}
