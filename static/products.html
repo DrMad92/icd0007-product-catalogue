@@ -3,20 +3,13 @@
 <head>
     <meta charset="utf-8">
     <title>Products</title>
-    <nav>
-    <!---   <a href="../static/products.html">Products</a>
-            <a href="../static/category.html">Categories</a>
-            <a href="#" class="btn">Add &#43</a>        
-
-        buraya solda menü koysak ?                -->
-    </nav>
 </head>
 <body>
 <div id="container">
-    <header id="header" class="navbar navbar-static-top">
+     <header id="header" class="navbar navbar-static-top">
         <div class="container-fluid">
             <div id="header-picture" class="navbar-header">
-                <a class="navbar-picture" href="../code/products2.html">
+                <a class="navbar-picture" href="products.html">
                     <!-- img to top left corner -->
                     <img src="#" alt="Product Catalogue" title="Product Catalogue">
                 </a>
@@ -41,9 +34,6 @@
                                     <td class="text-center">
                                         <!--<input type="checkbox" onclick=""> should select all products onclick -->
                                     </td>
-                                    <td class="text-center">
-                                        Image
-                                    </td>
                                     <td class="text-center resize-product-id">
                                         <a class="asc" href="#" title="asc">Product ID</a>
                                     </td>
@@ -57,20 +47,13 @@
                                         <a class="asc" href="#" title="asc">SKU</a>
                                     </td>
                                     <td class="text-center">
-                                        <a class="asc" href="#" title="asc">Price</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="asc" href="#" title="asc">Quantity</a>
-                                    </td>
-                                    <td class="text-center">
-                                        Edit
+                                        Description
                                     </td>          
                                 </tr>
                                 <tr name="table-row-filter">
                                     <td class="text-center">
                                         <input type="checkbox" onclick="">
                                     </td>
-                                    <td class="text-center"><!-- Empty Space --></td>
                                     <td>
                                         <div class="range-line">
                                             <span class="label">From:</span>
@@ -99,40 +82,12 @@
                                             <input id="prodcut-filter-sku" class="input-text" type="text" name="sku" value="">
                                         </div>
                                     </td>
-                                    <td>
-                                        <div class="range">
-                                        <div class="range-line">
-                                            <span class="label">From:</span>
-                                            <input id="product-filter-price-from" class="input-text" type="text" name="price[from]" value="">
-                                        </div>
-                                        <div class="range-line">
-                                            <span class="label">To :</span>
-                                            <input id="product-filter-price-to" class="input-text" type="text" name="price[to]" value="">            
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="range">
-                                        <div class="range-line">
-                                            <span class="label">From:</span>
-                                            <input id="product-filter-quantity-from" class="input-text" type="text" name="quantity[from]" value="">
-                                        </div>
-                                        <div class="range-line">
-                                            <span class="label">To :</span>
-                                            <input id="product-filter-quantity-to" class="input-text" type="text" name="quantity[to]" value="">
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td class="no-link-last"></td>
                                     </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-center">
                                         <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <td class="text-center">
-                                        <img src="../code/bg.jpg" alt="" class="img-thumbnail" width="60" height="60"/>
                                     </td>
                                     <!-- product id -->
                                     <td class="text-center">
@@ -146,26 +101,15 @@
                                     <td class="text-center">
                                         <span class="">msj006c-Royal Blue-L</span>
                                     </td>
-                                    <!-- price -->
                                     <td class="text-center">
-                                        <span class="">160.00</span>
-                                    </td>
-                                    <!-- quantity -->
-                                    <td class="text-center">
-                                            <span class="">100</span>
-                                    </td>
-                                    <td>
-                                        <button class="" type="button">
-                                            Edit
-                                        </button>
+                                        <textarea autofocus rows="0" cols="50">
+                                            Description
+                                        </textarea> 
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">
                                         <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <td class="text-center">
-                                        <img src="../code/indir.jpg" alt="" class="img-thumbnail" width="60" height="60"/>
                                     </td>
                                     <!-- product id -->
                                     <td class="text-center">
@@ -179,26 +123,10 @@
                                         <td class="text-center">
                                             <span class="">msj006c-Royal Blue-L</span>
                                         </td>
-                                        <!-- price -->
-                                        <td class="text-center">
-                                            <span class="">160.00</span>
-                                        </td>
-                                        <!-- quantity -->
-                                        <td class="text-center">
-                                                <span class="">100</span>
-                                        </td>
-                                        <td>
-                                            <button class="" type="button">
-                                                Edit
-                                            </button>
-                                        </td>
                                     </tr>
                                     <tr>
                                     <td class="text-center">
                                     <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <td class="text-center">
-                                    <img src="" alt="" class="img-thumbnail"/>
                                     </td>
                                     <!-- product id -->
                                     <td class="text-center">
@@ -212,26 +140,10 @@
                                     <td class="text-center">
                                     <span class="">msj006c-Royal Blue-L</span>
                                     </td>
-                                    <!-- price -->
-                                    <td class="text-center">
-                                    <span class="">160.00</span>
-                                    </td>
-                                    <!-- quantity -->
-                                    <td class="text-center">
-                                    <span class="">100</span>
-                                    </td>
-                                    <td>
-                                    <button class="" type="button">
-                                    Edit
-                                    </button>
-                                    </td>
                                     </tr>
                                     <tr>
                                     <td class="text-center">
                                     <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <td class="text-center">
-                                    <img src="" alt="" class="img-thumbnail" />
                                     </td>
                                     <!-- product id -->
                                     <td class="text-center">
@@ -244,19 +156,6 @@
                                     <!-- SKU -->
                                     <td class="text-center">
                                     <span class="">msj006c-Royal Blue-L</span>
-                                    </td>
-                                    <!-- price -->
-                                    <td class="text-center">
-                                    <span class="">160.00</span>
-                                    </td>
-                                    <!-- quantity -->
-                                    <td class="text-center">
-                                    <span class="">100</span>
-                                    </td>
-                                    <td>
-                                    <button class="" type="button">
-                                    Edit
-                                    </button>
                                     </td>
                                     </tr>
                             </tbody>
