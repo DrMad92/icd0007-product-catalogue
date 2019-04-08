@@ -1,12 +1,16 @@
 <?php
 
+use lib;
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
-    $list = $_POST['name'];
-    $sublist = $_POST['sub-list'];
-
-    echo $list.PHP_EOL;
-    echo $sublist.PHP_EOL;
+    $category = $_POST['name'];
+    $subcategory = $_POST['sub-list'];
+    unset($_POST);
+    
+    $cat = new Category();
+    $cat -> setName($category);
+    $cat -> save();
 
     header("HTTP/1.1 303 See Other");
     header('Location: ' . $_SERVER['HTTP_REFERER']);
