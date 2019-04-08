@@ -1,7 +1,5 @@
 <?php
 
-use lib;
-
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $category = $_POST['name'];
