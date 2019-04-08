@@ -83,21 +83,6 @@ abstract class Product implements ActiveRecordInterface
     protected $productid;
 
     /**
-     * The value for the price field.
-     *
-     * @var        double
-     */
-    protected $price;
-
-    /**
-     * The value for the quantity field.
-     *
-     * Note: this column has a database default value of: (expression) 0
-     * @var        int
-     */
-    protected $quantity;
-
-    /**
      * The value for the description field.
      *
      * @var        string
@@ -125,22 +110,10 @@ abstract class Product implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * Applies default values to this object.
-     * This method should be called from the object's constructor (or
-     * equivalent initialization method).
-     * @see __construct()
-     */
-    public function applyDefaultValues()
-    {
-    }
-
-    /**
      * Initializes internal state of Base\Product object.
-     * @see applyDefaults()
      */
     public function __construct()
     {
-        $this->applyDefaultValues();
     }
 
     /**
@@ -392,26 +365,6 @@ abstract class Product implements ActiveRecordInterface
     }
 
     /**
-     * Get the [price] column value.
-     *
-     * @return double
-     */
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Get the [quantity] column value.
-     *
-     * @return int
-     */
-    public function getQuantity()
-    {
-        return $this->quantity;
-    }
-
-    /**
      * Get the [description] column value.
      *
      * @return string
@@ -490,46 +443,6 @@ abstract class Product implements ActiveRecordInterface
 
         return $this;
     } // setProductid()
-
-    /**
-     * Set the value of [price] column.
-     *
-     * @param double $v new value
-     * @return $this|\Product The current object (for fluent API support)
-     */
-    public function setPrice($v)
-    {
-        if ($v !== null) {
-            $v = (double) $v;
-        }
-
-        if ($this->price !== $v) {
-            $this->price = $v;
-            $this->modifiedColumns[ProductTableMap::COL_PRICE] = true;
-        }
-
-        return $this;
-    } // setPrice()
-
-    /**
-     * Set the value of [quantity] column.
-     *
-     * @param int $v new value
-     * @return $this|\Product The current object (for fluent API support)
-     */
-    public function setQuantity($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->quantity !== $v) {
-            $this->quantity = $v;
-            $this->modifiedColumns[ProductTableMap::COL_QUANTITY] = true;
-        }
-
-        return $this;
-    } // setQuantity()
 
     /**
      * Set the value of [description] column.
@@ -620,16 +533,10 @@ abstract class Product implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : ProductTableMap::translateFieldName('Productid', TableMap::TYPE_PHPNAME, $indexType)];
             $this->productid = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProductTableMap::translateFieldName('Price', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->price = (null !== $col) ? (double) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProductTableMap::translateFieldName('Quantity', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->quantity = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : ProductTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProductTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
             $this->description = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ProductTableMap::translateFieldName('SubcategoryId', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProductTableMap::translateFieldName('SubcategoryId', TableMap::TYPE_PHPNAME, $indexType)];
             $this->subcategory_id = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
@@ -639,7 +546,7 @@ abstract class Product implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 7; // 7 = ProductTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 5; // 5 = ProductTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Product'), 0, $e);
@@ -865,12 +772,6 @@ abstract class Product implements ActiveRecordInterface
         if ($this->isColumnModified(ProductTableMap::COL_PRODUCTID)) {
             $modifiedColumns[':p' . $index++]  = 'productID';
         }
-        if ($this->isColumnModified(ProductTableMap::COL_PRICE)) {
-            $modifiedColumns[':p' . $index++]  = 'price';
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_QUANTITY)) {
-            $modifiedColumns[':p' . $index++]  = 'quantity';
-        }
         if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
             $modifiedColumns[':p' . $index++]  = 'description';
         }
@@ -896,12 +797,6 @@ abstract class Product implements ActiveRecordInterface
                         break;
                     case 'productID':
                         $stmt->bindValue($identifier, $this->productid, PDO::PARAM_STR);
-                        break;
-                    case 'price':
-                        $stmt->bindValue($identifier, $this->price, PDO::PARAM_STR);
-                        break;
-                    case 'quantity':
-                        $stmt->bindValue($identifier, $this->quantity, PDO::PARAM_INT);
                         break;
                     case 'description':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
@@ -981,15 +876,9 @@ abstract class Product implements ActiveRecordInterface
                 return $this->getProductid();
                 break;
             case 3:
-                return $this->getPrice();
-                break;
-            case 4:
-                return $this->getQuantity();
-                break;
-            case 5:
                 return $this->getDescription();
                 break;
-            case 6:
+            case 4:
                 return $this->getSubcategoryId();
                 break;
             default:
@@ -1025,10 +914,8 @@ abstract class Product implements ActiveRecordInterface
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
             $keys[2] => $this->getProductid(),
-            $keys[3] => $this->getPrice(),
-            $keys[4] => $this->getQuantity(),
-            $keys[5] => $this->getDescription(),
-            $keys[6] => $this->getSubcategoryId(),
+            $keys[3] => $this->getDescription(),
+            $keys[4] => $this->getSubcategoryId(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1095,15 +982,9 @@ abstract class Product implements ActiveRecordInterface
                 $this->setProductid($value);
                 break;
             case 3:
-                $this->setPrice($value);
-                break;
-            case 4:
-                $this->setQuantity($value);
-                break;
-            case 5:
                 $this->setDescription($value);
                 break;
-            case 6:
+            case 4:
                 $this->setSubcategoryId($value);
                 break;
         } // switch()
@@ -1142,16 +1023,10 @@ abstract class Product implements ActiveRecordInterface
             $this->setProductid($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setPrice($arr[$keys[3]]);
+            $this->setDescription($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setQuantity($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setDescription($arr[$keys[5]]);
-        }
-        if (array_key_exists($keys[6], $arr)) {
-            $this->setSubcategoryId($arr[$keys[6]]);
+            $this->setSubcategoryId($arr[$keys[4]]);
         }
     }
 
@@ -1202,12 +1077,6 @@ abstract class Product implements ActiveRecordInterface
         }
         if ($this->isColumnModified(ProductTableMap::COL_PRODUCTID)) {
             $criteria->add(ProductTableMap::COL_PRODUCTID, $this->productid);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_PRICE)) {
-            $criteria->add(ProductTableMap::COL_PRICE, $this->price);
-        }
-        if ($this->isColumnModified(ProductTableMap::COL_QUANTITY)) {
-            $criteria->add(ProductTableMap::COL_QUANTITY, $this->quantity);
         }
         if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
             $criteria->add(ProductTableMap::COL_DESCRIPTION, $this->description);
@@ -1303,8 +1172,6 @@ abstract class Product implements ActiveRecordInterface
     {
         $copyObj->setName($this->getName());
         $copyObj->setProductid($this->getProductid());
-        $copyObj->setPrice($this->getPrice());
-        $copyObj->setQuantity($this->getQuantity());
         $copyObj->setDescription($this->getDescription());
         $copyObj->setSubcategoryId($this->getSubcategoryId());
         if ($makeNew) {
@@ -1399,13 +1266,10 @@ abstract class Product implements ActiveRecordInterface
         $this->id = null;
         $this->name = null;
         $this->productid = null;
-        $this->price = null;
-        $this->quantity = null;
         $this->description = null;
         $this->subcategory_id = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
-        $this->applyDefaultValues();
         $this->resetModified();
         $this->setNew(true);
         $this->setDeleted(false);

@@ -60,8 +60,6 @@ CREATE TABLE `product`
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(65) NOT NULL,
     `productID` VARCHAR(65),
-    `price` FLOAT,
-    `quantity` INTEGER DEFAULT 0,
     `description` TEXT,
     `subcategory_id` INTEGER NOT NULL,
     PRIMARY KEY (`id`),
