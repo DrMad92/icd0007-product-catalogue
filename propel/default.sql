@@ -13,7 +13,8 @@ CREATE TABLE `category`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(65) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `category_u_d94269` (`name`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -26,7 +27,8 @@ CREATE TABLE `subcategory`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(65) NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`),
+    UNIQUE INDEX `subcategory_u_d94269` (`name`)
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
@@ -63,6 +65,7 @@ CREATE TABLE `product`
     `description` TEXT,
     `subcategory_id` INTEGER NOT NULL,
     PRIMARY KEY (`id`),
+    UNIQUE INDEX `product_u_7c0b83` (`productID`),
     INDEX `product_fi_49dd8c` (`subcategory_id`),
     CONSTRAINT `product_fk_49dd8c`
         FOREIGN KEY (`subcategory_id`)
