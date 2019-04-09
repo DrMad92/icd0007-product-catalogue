@@ -22,16 +22,6 @@ body {
     margin-right: auto;
 }
 
-.img-thumbnail{
-    padding: 4px; 
-    background-color: #fff;    
-    border: 1px solid #ddd;    
-    border-radius: 3px;       
-    display: inline-block;    
-    max-width: 100%;    
-    height: auto;
-}
-
 a{
     text-decoration: none;
 }
