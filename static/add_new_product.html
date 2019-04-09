@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add New</title>
+</head>
+<body>
+	<table cellspacing="3">
+	<form action="form.php"  method="post" id="formdata">
+		<tr><td>
+		<label>Product Name:</label></td><td align="right">
+		<input type="text" pattern="[A-Za-z]+" name="pID" placeholder="*Product Name" required>
+		</td></tr>
+		<tr><td>
+		<label>Product ID:</label></td><td align="right">
+		<input type="text" pattern="[A-Za-z]+" name="mname" placeholder="Product ID">
+		</td></tr>
+		<tr><td>
+		<label>Last Name:</label></td><td align="right">
+		<input type="text" pattern="[A-Za-z]+" name="lname" placeholder="*Last Name" required>
+		</td></tr>
+		<tr><td>
+		<label for="Category">Choose Category:</label></td><td align="right">
+		<input list="category_list" id="category" name="category"/><br>
+		<datalist id="category_list">
+			<option value=""></option>
+			<option value=""></option>
+		</datalist>
+		</td></tr>
+		<tr><td colspan="2" align="right">
+		<input type="submit" name="" value="Submit">
+		</td></tr>
+	</form>
+	</table>
+</body>
+</html>
