@@ -2,9 +2,9 @@
 
 namespace Base;
 
+use \Category as ChildCategory;
+use \CategoryQuery as ChildCategoryQuery;
 use \ProductQuery as ChildProductQuery;
-use \Subcategory as ChildSubcategory;
-use \SubcategoryQuery as ChildSubcategoryQuery;
 use \Exception;
 use \PDO;
 use Map\ProductTableMap;
@@ -90,16 +90,16 @@ abstract class Product implements ActiveRecordInterface
     protected $description;
 
     /**
-     * The value for the subcategory_id field.
+     * The value for the category_id field.
      *
      * @var        int
      */
-    protected $subcategory_id;
+    protected $category_id;
 
     /**
-     * @var        ChildSubcategory
+     * @var        ChildCategory
      */
-    protected $aSubcategory;
+    protected $aCategory;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -375,13 +375,13 @@ abstract class Product implements ActiveRecordInterface
     }
 
     /**
-     * Get the [subcategory_id] column value.
+     * Get the [category_id] column value.
      *
      * @return int
      */
-    public function getSubcategoryId()
+    public function getCategoryId()
     {
-        return $this->subcategory_id;
+        return $this->category_id;
     }
 
     /**
@@ -465,28 +465,28 @@ abstract class Product implements ActiveRecordInterface
     } // setDescription()
 
     /**
-     * Set the value of [subcategory_id] column.
+     * Set the value of [category_id] column.
      *
      * @param int $v new value
      * @return $this|\Product The current object (for fluent API support)
      */
-    public function setSubcategoryId($v)
+    public function setCategoryId($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->subcategory_id !== $v) {
-            $this->subcategory_id = $v;
-            $this->modifiedColumns[ProductTableMap::COL_SUBCATEGORY_ID] = true;
+        if ($this->category_id !== $v) {
+            $this->category_id = $v;
+            $this->modifiedColumns[ProductTableMap::COL_CATEGORY_ID] = true;
         }
 
-        if ($this->aSubcategory !== null && $this->aSubcategory->getId() !== $v) {
-            $this->aSubcategory = null;
+        if ($this->aCategory !== null && $this->aCategory->getId() !== $v) {
+            $this->aCategory = null;
         }
 
         return $this;
-    } // setSubcategoryId()
+    } // setCategoryId()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -536,8 +536,8 @@ abstract class Product implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : ProductTableMap::translateFieldName('Description', TableMap::TYPE_PHPNAME, $indexType)];
             $this->description = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProductTableMap::translateFieldName('SubcategoryId', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->subcategory_id = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : ProductTableMap::translateFieldName('CategoryId', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->category_id = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -568,8 +568,8 @@ abstract class Product implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->aSubcategory !== null && $this->subcategory_id !== $this->aSubcategory->getId()) {
-            $this->aSubcategory = null;
+        if ($this->aCategory !== null && $this->category_id !== $this->aCategory->getId()) {
+            $this->aCategory = null;
         }
     } // ensureConsistency
 
@@ -610,7 +610,7 @@ abstract class Product implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aSubcategory = null;
+            $this->aCategory = null;
         } // if (deep)
     }
 
@@ -719,11 +719,11 @@ abstract class Product implements ActiveRecordInterface
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aSubcategory !== null) {
-                if ($this->aSubcategory->isModified() || $this->aSubcategory->isNew()) {
-                    $affectedRows += $this->aSubcategory->save($con);
+            if ($this->aCategory !== null) {
+                if ($this->aCategory->isModified() || $this->aCategory->isNew()) {
+                    $affectedRows += $this->aCategory->save($con);
                 }
-                $this->setSubcategory($this->aSubcategory);
+                $this->setCategory($this->aCategory);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -775,8 +775,8 @@ abstract class Product implements ActiveRecordInterface
         if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
             $modifiedColumns[':p' . $index++]  = 'description';
         }
-        if ($this->isColumnModified(ProductTableMap::COL_SUBCATEGORY_ID)) {
-            $modifiedColumns[':p' . $index++]  = 'subcategory_id';
+        if ($this->isColumnModified(ProductTableMap::COL_CATEGORY_ID)) {
+            $modifiedColumns[':p' . $index++]  = 'category_id';
         }
 
         $sql = sprintf(
@@ -801,8 +801,8 @@ abstract class Product implements ActiveRecordInterface
                     case 'description':
                         $stmt->bindValue($identifier, $this->description, PDO::PARAM_STR);
                         break;
-                    case 'subcategory_id':
-                        $stmt->bindValue($identifier, $this->subcategory_id, PDO::PARAM_INT);
+                    case 'category_id':
+                        $stmt->bindValue($identifier, $this->category_id, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -879,7 +879,7 @@ abstract class Product implements ActiveRecordInterface
                 return $this->getDescription();
                 break;
             case 4:
-                return $this->getSubcategoryId();
+                return $this->getCategoryId();
                 break;
             default:
                 return null;
@@ -915,7 +915,7 @@ abstract class Product implements ActiveRecordInterface
             $keys[1] => $this->getName(),
             $keys[2] => $this->getProductid(),
             $keys[3] => $this->getDescription(),
-            $keys[4] => $this->getSubcategoryId(),
+            $keys[4] => $this->getCategoryId(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -923,20 +923,20 @@ abstract class Product implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->aSubcategory) {
+            if (null !== $this->aCategory) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'subcategory';
+                        $key = 'category';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'subcategory';
+                        $key = 'category';
                         break;
                     default:
-                        $key = 'Subcategory';
+                        $key = 'Category';
                 }
 
-                $result[$key] = $this->aSubcategory->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+                $result[$key] = $this->aCategory->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
         }
 
@@ -985,7 +985,7 @@ abstract class Product implements ActiveRecordInterface
                 $this->setDescription($value);
                 break;
             case 4:
-                $this->setSubcategoryId($value);
+                $this->setCategoryId($value);
                 break;
         } // switch()
 
@@ -1026,7 +1026,7 @@ abstract class Product implements ActiveRecordInterface
             $this->setDescription($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setSubcategoryId($arr[$keys[4]]);
+            $this->setCategoryId($arr[$keys[4]]);
         }
     }
 
@@ -1081,8 +1081,8 @@ abstract class Product implements ActiveRecordInterface
         if ($this->isColumnModified(ProductTableMap::COL_DESCRIPTION)) {
             $criteria->add(ProductTableMap::COL_DESCRIPTION, $this->description);
         }
-        if ($this->isColumnModified(ProductTableMap::COL_SUBCATEGORY_ID)) {
-            $criteria->add(ProductTableMap::COL_SUBCATEGORY_ID, $this->subcategory_id);
+        if ($this->isColumnModified(ProductTableMap::COL_CATEGORY_ID)) {
+            $criteria->add(ProductTableMap::COL_CATEGORY_ID, $this->category_id);
         }
 
         return $criteria;
@@ -1173,7 +1173,7 @@ abstract class Product implements ActiveRecordInterface
         $copyObj->setName($this->getName());
         $copyObj->setProductid($this->getProductid());
         $copyObj->setDescription($this->getDescription());
-        $copyObj->setSubcategoryId($this->getSubcategoryId());
+        $copyObj->setCategoryId($this->getCategoryId());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1203,24 +1203,24 @@ abstract class Product implements ActiveRecordInterface
     }
 
     /**
-     * Declares an association between this object and a ChildSubcategory object.
+     * Declares an association between this object and a ChildCategory object.
      *
-     * @param  ChildSubcategory $v
+     * @param  ChildCategory $v
      * @return $this|\Product The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setSubcategory(ChildSubcategory $v = null)
+    public function setCategory(ChildCategory $v = null)
     {
         if ($v === null) {
-            $this->setSubcategoryId(NULL);
+            $this->setCategoryId(NULL);
         } else {
-            $this->setSubcategoryId($v->getId());
+            $this->setCategoryId($v->getId());
         }
 
-        $this->aSubcategory = $v;
+        $this->aCategory = $v;
 
         // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the ChildSubcategory object, it will not be re-added.
+        // If this object has already been added to the ChildCategory object, it will not be re-added.
         if ($v !== null) {
             $v->addProduct($this);
         }
@@ -1231,26 +1231,26 @@ abstract class Product implements ActiveRecordInterface
 
 
     /**
-     * Get the associated ChildSubcategory object
+     * Get the associated ChildCategory object
      *
      * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildSubcategory The associated ChildSubcategory object.
+     * @return ChildCategory The associated ChildCategory object.
      * @throws PropelException
      */
-    public function getSubcategory(ConnectionInterface $con = null)
+    public function getCategory(ConnectionInterface $con = null)
     {
-        if ($this->aSubcategory === null && ($this->subcategory_id != 0)) {
-            $this->aSubcategory = ChildSubcategoryQuery::create()->findPk($this->subcategory_id, $con);
+        if ($this->aCategory === null && ($this->category_id != 0)) {
+            $this->aCategory = ChildCategoryQuery::create()->findPk($this->category_id, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aSubcategory->addProducts($this);
+                $this->aCategory->addProducts($this);
              */
         }
 
-        return $this->aSubcategory;
+        return $this->aCategory;
     }
 
     /**
@@ -1260,14 +1260,14 @@ abstract class Product implements ActiveRecordInterface
      */
     public function clear()
     {
-        if (null !== $this->aSubcategory) {
-            $this->aSubcategory->removeProduct($this);
+        if (null !== $this->aCategory) {
+            $this->aCategory->removeProduct($this);
         }
         $this->id = null;
         $this->name = null;
         $this->productid = null;
         $this->description = null;
-        $this->subcategory_id = null;
+        $this->category_id = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1288,7 +1288,7 @@ abstract class Product implements ActiveRecordInterface
         if ($deep) {
         } // if ($deep)
 
-        $this->aSubcategory = null;
+        $this->aCategory = null;
     }
 
     /**

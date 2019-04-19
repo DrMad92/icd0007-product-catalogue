@@ -4,12 +4,12 @@ namespace Base;
 
 use \Category as ChildCategory;
 use \CategoryQuery as ChildCategoryQuery;
-use \CategorySubcategory as ChildCategorySubcategory;
-use \CategorySubcategoryQuery as ChildCategorySubcategoryQuery;
+use \Product as ChildProduct;
+use \ProductQuery as ChildProductQuery;
 use \Exception;
 use \PDO;
-use Map\CategorySubcategoryTableMap;
 use Map\CategoryTableMap;
+use Map\ProductTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
@@ -79,10 +79,10 @@ abstract class Category implements ActiveRecordInterface
     protected $name;
 
     /**
-     * @var        ObjectCollection|ChildCategorySubcategory[] Collection to store aggregation of ChildCategorySubcategory objects.
+     * @var        ObjectCollection|ChildProduct[] Collection to store aggregation of ChildProduct objects.
      */
-    protected $collCategorySubcategories;
-    protected $collCategorySubcategoriesPartial;
+    protected $collProducts;
+    protected $collProductsPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -94,9 +94,9 @@ abstract class Category implements ActiveRecordInterface
 
     /**
      * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildCategorySubcategory[]
+     * @var ObjectCollection|ChildProduct[]
      */
-    protected $categorySubcategoriesScheduledForDeletion = null;
+    protected $productsScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Category object.
@@ -493,7 +493,7 @@ abstract class Category implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->collCategorySubcategories = null;
+            $this->collProducts = null;
 
         } // if (deep)
     }
@@ -609,17 +609,17 @@ abstract class Category implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->categorySubcategoriesScheduledForDeletion !== null) {
-                if (!$this->categorySubcategoriesScheduledForDeletion->isEmpty()) {
-                    \CategorySubcategoryQuery::create()
-                        ->filterByPrimaryKeys($this->categorySubcategoriesScheduledForDeletion->getPrimaryKeys(false))
+            if ($this->productsScheduledForDeletion !== null) {
+                if (!$this->productsScheduledForDeletion->isEmpty()) {
+                    \ProductQuery::create()
+                        ->filterByPrimaryKeys($this->productsScheduledForDeletion->getPrimaryKeys(false))
                         ->delete($con);
-                    $this->categorySubcategoriesScheduledForDeletion = null;
+                    $this->productsScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collCategorySubcategories !== null) {
-                foreach ($this->collCategorySubcategories as $referrerFK) {
+            if ($this->collProducts !== null) {
+                foreach ($this->collProducts as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -782,20 +782,20 @@ abstract class Category implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->collCategorySubcategories) {
+            if (null !== $this->collProducts) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'categorySubcategories';
+                        $key = 'products';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'category_subcategories';
+                        $key = 'products';
                         break;
                     default:
-                        $key = 'CategorySubcategories';
+                        $key = 'Products';
                 }
 
-                $result[$key] = $this->collCategorySubcategories->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->collProducts->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1009,9 +1009,9 @@ abstract class Category implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getCategorySubcategories() as $relObj) {
+            foreach ($this->getProducts() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addCategorySubcategory($relObj->copy($deepCopy));
+                    $copyObj->addProduct($relObj->copy($deepCopy));
                 }
             }
 
@@ -1056,38 +1056,38 @@ abstract class Category implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('CategorySubcategory' == $relationName) {
-            $this->initCategorySubcategories();
+        if ('Product' == $relationName) {
+            $this->initProducts();
             return;
         }
     }
 
     /**
-     * Clears out the collCategorySubcategories collection
+     * Clears out the collProducts collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return void
-     * @see        addCategorySubcategories()
+     * @see        addProducts()
      */
-    public function clearCategorySubcategories()
+    public function clearProducts()
     {
-        $this->collCategorySubcategories = null; // important to set this to NULL since that means it is uninitialized
+        $this->collProducts = null; // important to set this to NULL since that means it is uninitialized
     }
 
     /**
-     * Reset is the collCategorySubcategories collection loaded partially.
+     * Reset is the collProducts collection loaded partially.
      */
-    public function resetPartialCategorySubcategories($v = true)
+    public function resetPartialProducts($v = true)
     {
-        $this->collCategorySubcategoriesPartial = $v;
+        $this->collProductsPartial = $v;
     }
 
     /**
-     * Initializes the collCategorySubcategories collection.
+     * Initializes the collProducts collection.
      *
-     * By default this just sets the collCategorySubcategories collection to an empty array (like clearcollCategorySubcategories());
+     * By default this just sets the collProducts collection to an empty array (like clearcollProducts());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1096,20 +1096,20 @@ abstract class Category implements ActiveRecordInterface
      *
      * @return void
      */
-    public function initCategorySubcategories($overrideExisting = true)
+    public function initProducts($overrideExisting = true)
     {
-        if (null !== $this->collCategorySubcategories && !$overrideExisting) {
+        if (null !== $this->collProducts && !$overrideExisting) {
             return;
         }
 
-        $collectionClassName = CategorySubcategoryTableMap::getTableMap()->getCollectionClassName();
+        $collectionClassName = ProductTableMap::getTableMap()->getCollectionClassName();
 
-        $this->collCategorySubcategories = new $collectionClassName;
-        $this->collCategorySubcategories->setModel('\CategorySubcategory');
+        $this->collProducts = new $collectionClassName;
+        $this->collProducts->setModel('\Product');
     }
 
     /**
-     * Gets an array of ChildCategorySubcategory objects which contain a foreign key that references this object.
+     * Gets an array of ChildProduct objects which contain a foreign key that references this object.
      *
      * If the $criteria is not null, it is used to always fetch the results from the database.
      * Otherwise the results are fetched from the database the first time, then cached.
@@ -1119,108 +1119,108 @@ abstract class Category implements ActiveRecordInterface
      *
      * @param      Criteria $criteria optional Criteria object to narrow the query
      * @param      ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildCategorySubcategory[] List of ChildCategorySubcategory objects
+     * @return ObjectCollection|ChildProduct[] List of ChildProduct objects
      * @throws PropelException
      */
-    public function getCategorySubcategories(Criteria $criteria = null, ConnectionInterface $con = null)
+    public function getProducts(Criteria $criteria = null, ConnectionInterface $con = null)
     {
-        $partial = $this->collCategorySubcategoriesPartial && !$this->isNew();
-        if (null === $this->collCategorySubcategories || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collCategorySubcategories) {
+        $partial = $this->collProductsPartial && !$this->isNew();
+        if (null === $this->collProducts || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collProducts) {
                 // return empty collection
-                $this->initCategorySubcategories();
+                $this->initProducts();
             } else {
-                $collCategorySubcategories = ChildCategorySubcategoryQuery::create(null, $criteria)
+                $collProducts = ChildProductQuery::create(null, $criteria)
                     ->filterByCategory($this)
                     ->find($con);
 
                 if (null !== $criteria) {
-                    if (false !== $this->collCategorySubcategoriesPartial && count($collCategorySubcategories)) {
-                        $this->initCategorySubcategories(false);
+                    if (false !== $this->collProductsPartial && count($collProducts)) {
+                        $this->initProducts(false);
 
-                        foreach ($collCategorySubcategories as $obj) {
-                            if (false == $this->collCategorySubcategories->contains($obj)) {
-                                $this->collCategorySubcategories->append($obj);
+                        foreach ($collProducts as $obj) {
+                            if (false == $this->collProducts->contains($obj)) {
+                                $this->collProducts->append($obj);
                             }
                         }
 
-                        $this->collCategorySubcategoriesPartial = true;
+                        $this->collProductsPartial = true;
                     }
 
-                    return $collCategorySubcategories;
+                    return $collProducts;
                 }
 
-                if ($partial && $this->collCategorySubcategories) {
-                    foreach ($this->collCategorySubcategories as $obj) {
+                if ($partial && $this->collProducts) {
+                    foreach ($this->collProducts as $obj) {
                         if ($obj->isNew()) {
-                            $collCategorySubcategories[] = $obj;
+                            $collProducts[] = $obj;
                         }
                     }
                 }
 
-                $this->collCategorySubcategories = $collCategorySubcategories;
-                $this->collCategorySubcategoriesPartial = false;
+                $this->collProducts = $collProducts;
+                $this->collProductsPartial = false;
             }
         }
 
-        return $this->collCategorySubcategories;
+        return $this->collProducts;
     }
 
     /**
-     * Sets a collection of ChildCategorySubcategory objects related by a one-to-many relationship
+     * Sets a collection of ChildProduct objects related by a one-to-many relationship
      * to the current object.
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param      Collection $categorySubcategories A Propel collection.
+     * @param      Collection $products A Propel collection.
      * @param      ConnectionInterface $con Optional connection object
      * @return $this|ChildCategory The current object (for fluent API support)
      */
-    public function setCategorySubcategories(Collection $categorySubcategories, ConnectionInterface $con = null)
+    public function setProducts(Collection $products, ConnectionInterface $con = null)
     {
-        /** @var ChildCategorySubcategory[] $categorySubcategoriesToDelete */
-        $categorySubcategoriesToDelete = $this->getCategorySubcategories(new Criteria(), $con)->diff($categorySubcategories);
+        /** @var ChildProduct[] $productsToDelete */
+        $productsToDelete = $this->getProducts(new Criteria(), $con)->diff($products);
 
 
-        $this->categorySubcategoriesScheduledForDeletion = $categorySubcategoriesToDelete;
+        $this->productsScheduledForDeletion = $productsToDelete;
 
-        foreach ($categorySubcategoriesToDelete as $categorySubcategoryRemoved) {
-            $categorySubcategoryRemoved->setCategory(null);
+        foreach ($productsToDelete as $productRemoved) {
+            $productRemoved->setCategory(null);
         }
 
-        $this->collCategorySubcategories = null;
-        foreach ($categorySubcategories as $categorySubcategory) {
-            $this->addCategorySubcategory($categorySubcategory);
+        $this->collProducts = null;
+        foreach ($products as $product) {
+            $this->addProduct($product);
         }
 
-        $this->collCategorySubcategories = $categorySubcategories;
-        $this->collCategorySubcategoriesPartial = false;
+        $this->collProducts = $products;
+        $this->collProductsPartial = false;
 
         return $this;
     }
 
     /**
-     * Returns the number of related CategorySubcategory objects.
+     * Returns the number of related Product objects.
      *
      * @param      Criteria $criteria
      * @param      boolean $distinct
      * @param      ConnectionInterface $con
-     * @return int             Count of related CategorySubcategory objects.
+     * @return int             Count of related Product objects.
      * @throws PropelException
      */
-    public function countCategorySubcategories(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
+    public function countProducts(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
     {
-        $partial = $this->collCategorySubcategoriesPartial && !$this->isNew();
-        if (null === $this->collCategorySubcategories || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collCategorySubcategories) {
+        $partial = $this->collProductsPartial && !$this->isNew();
+        if (null === $this->collProducts || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collProducts) {
                 return 0;
             }
 
             if ($partial && !$criteria) {
-                return count($this->getCategorySubcategories());
+                return count($this->getProducts());
             }
 
-            $query = ChildCategorySubcategoryQuery::create(null, $criteria);
+            $query = ChildProductQuery::create(null, $criteria);
             if ($distinct) {
                 $query->distinct();
             }
@@ -1230,28 +1230,28 @@ abstract class Category implements ActiveRecordInterface
                 ->count($con);
         }
 
-        return count($this->collCategorySubcategories);
+        return count($this->collProducts);
     }
 
     /**
-     * Method called to associate a ChildCategorySubcategory object to this object
-     * through the ChildCategorySubcategory foreign key attribute.
+     * Method called to associate a ChildProduct object to this object
+     * through the ChildProduct foreign key attribute.
      *
-     * @param  ChildCategorySubcategory $l ChildCategorySubcategory
+     * @param  ChildProduct $l ChildProduct
      * @return $this|\Category The current object (for fluent API support)
      */
-    public function addCategorySubcategory(ChildCategorySubcategory $l)
+    public function addProduct(ChildProduct $l)
     {
-        if ($this->collCategorySubcategories === null) {
-            $this->initCategorySubcategories();
-            $this->collCategorySubcategoriesPartial = true;
+        if ($this->collProducts === null) {
+            $this->initProducts();
+            $this->collProductsPartial = true;
         }
 
-        if (!$this->collCategorySubcategories->contains($l)) {
-            $this->doAddCategorySubcategory($l);
+        if (!$this->collProducts->contains($l)) {
+            $this->doAddProduct($l);
 
-            if ($this->categorySubcategoriesScheduledForDeletion and $this->categorySubcategoriesScheduledForDeletion->contains($l)) {
-                $this->categorySubcategoriesScheduledForDeletion->remove($this->categorySubcategoriesScheduledForDeletion->search($l));
+            if ($this->productsScheduledForDeletion and $this->productsScheduledForDeletion->contains($l)) {
+                $this->productsScheduledForDeletion->remove($this->productsScheduledForDeletion->search($l));
             }
         }
 
@@ -1259,57 +1259,32 @@ abstract class Category implements ActiveRecordInterface
     }
 
     /**
-     * @param ChildCategorySubcategory $categorySubcategory The ChildCategorySubcategory object to add.
+     * @param ChildProduct $product The ChildProduct object to add.
      */
-    protected function doAddCategorySubcategory(ChildCategorySubcategory $categorySubcategory)
+    protected function doAddProduct(ChildProduct $product)
     {
-        $this->collCategorySubcategories[]= $categorySubcategory;
-        $categorySubcategory->setCategory($this);
+        $this->collProducts[]= $product;
+        $product->setCategory($this);
     }
 
     /**
-     * @param  ChildCategorySubcategory $categorySubcategory The ChildCategorySubcategory object to remove.
+     * @param  ChildProduct $product The ChildProduct object to remove.
      * @return $this|ChildCategory The current object (for fluent API support)
      */
-    public function removeCategorySubcategory(ChildCategorySubcategory $categorySubcategory)
+    public function removeProduct(ChildProduct $product)
     {
-        if ($this->getCategorySubcategories()->contains($categorySubcategory)) {
-            $pos = $this->collCategorySubcategories->search($categorySubcategory);
-            $this->collCategorySubcategories->remove($pos);
-            if (null === $this->categorySubcategoriesScheduledForDeletion) {
-                $this->categorySubcategoriesScheduledForDeletion = clone $this->collCategorySubcategories;
-                $this->categorySubcategoriesScheduledForDeletion->clear();
+        if ($this->getProducts()->contains($product)) {
+            $pos = $this->collProducts->search($product);
+            $this->collProducts->remove($pos);
+            if (null === $this->productsScheduledForDeletion) {
+                $this->productsScheduledForDeletion = clone $this->collProducts;
+                $this->productsScheduledForDeletion->clear();
             }
-            $this->categorySubcategoriesScheduledForDeletion[]= clone $categorySubcategory;
-            $categorySubcategory->setCategory(null);
+            $this->productsScheduledForDeletion[]= clone $product;
+            $product->setCategory(null);
         }
 
         return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Category is new, it will return
-     * an empty collection; or if this Category has previously
-     * been saved, it will retrieve related CategorySubcategories from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Category.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return ObjectCollection|ChildCategorySubcategory[] List of ChildCategorySubcategory objects
-     */
-    public function getCategorySubcategoriesJoinSubcategory(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
-    {
-        $query = ChildCategorySubcategoryQuery::create(null, $criteria);
-        $query->joinWith('Subcategory', $joinBehavior);
-
-        return $this->getCategorySubcategories($query, $con);
     }
 
     /**
@@ -1339,14 +1314,14 @@ abstract class Category implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collCategorySubcategories) {
-                foreach ($this->collCategorySubcategories as $o) {
+            if ($this->collProducts) {
+                foreach ($this->collProducts as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        $this->collCategorySubcategories = null;
+        $this->collProducts = null;
     }
 
     /**

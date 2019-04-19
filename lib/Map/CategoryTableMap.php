@@ -140,13 +140,13 @@ class CategoryTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('CategorySubcategory', '\\CategorySubcategory', RelationMap::ONE_TO_MANY, array (
+        $this->addRelation('Product', '\\Product', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':category_id',
     1 => ':id',
   ),
-), null, null, 'CategorySubcategories', false);
+), null, null, 'Products', false);
     } // buildRelations()
 
     /**

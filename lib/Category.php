@@ -21,5 +21,4 @@ class Category extends BaseCategory
 
         return ["name" => $name, "titleID" => $titleID, "treeID" => $treeID];
     }
-
 }

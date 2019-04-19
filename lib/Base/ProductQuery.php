@@ -24,13 +24,13 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method     ChildProductQuery orderByProductid($order = Criteria::ASC) Order by the productID column
  * @method     ChildProductQuery orderByDescription($order = Criteria::ASC) Order by the description column
- * @method     ChildProductQuery orderBySubcategoryId($order = Criteria::ASC) Order by the subcategory_id column
+ * @method     ChildProductQuery orderByCategoryId($order = Criteria::ASC) Order by the category_id column
  *
  * @method     ChildProductQuery groupById() Group by the id column
  * @method     ChildProductQuery groupByName() Group by the name column
  * @method     ChildProductQuery groupByProductid() Group by the productID column
  * @method     ChildProductQuery groupByDescription() Group by the description column
- * @method     ChildProductQuery groupBySubcategoryId() Group by the subcategory_id column
+ * @method     ChildProductQuery groupByCategoryId() Group by the category_id column
  *
  * @method     ChildProductQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildProductQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -40,17 +40,17 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildProductQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
- * @method     ChildProductQuery leftJoinSubcategory($relationAlias = null) Adds a LEFT JOIN clause to the query using the Subcategory relation
- * @method     ChildProductQuery rightJoinSubcategory($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Subcategory relation
- * @method     ChildProductQuery innerJoinSubcategory($relationAlias = null) Adds a INNER JOIN clause to the query using the Subcategory relation
+ * @method     ChildProductQuery leftJoinCategory($relationAlias = null) Adds a LEFT JOIN clause to the query using the Category relation
+ * @method     ChildProductQuery rightJoinCategory($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Category relation
+ * @method     ChildProductQuery innerJoinCategory($relationAlias = null) Adds a INNER JOIN clause to the query using the Category relation
  *
- * @method     ChildProductQuery joinWithSubcategory($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Subcategory relation
+ * @method     ChildProductQuery joinWithCategory($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Category relation
  *
- * @method     ChildProductQuery leftJoinWithSubcategory() Adds a LEFT JOIN clause and with to the query using the Subcategory relation
- * @method     ChildProductQuery rightJoinWithSubcategory() Adds a RIGHT JOIN clause and with to the query using the Subcategory relation
- * @method     ChildProductQuery innerJoinWithSubcategory() Adds a INNER JOIN clause and with to the query using the Subcategory relation
+ * @method     ChildProductQuery leftJoinWithCategory() Adds a LEFT JOIN clause and with to the query using the Category relation
+ * @method     ChildProductQuery rightJoinWithCategory() Adds a RIGHT JOIN clause and with to the query using the Category relation
+ * @method     ChildProductQuery innerJoinWithCategory() Adds a INNER JOIN clause and with to the query using the Category relation
  *
- * @method     \SubcategoryQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \CategoryQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildProduct findOne(ConnectionInterface $con = null) Return the first ChildProduct matching the query
  * @method     ChildProduct findOneOrCreate(ConnectionInterface $con = null) Return the first ChildProduct matching the query, or a new ChildProduct object populated from the query conditions when no match is found
@@ -59,7 +59,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProduct findOneByName(string $name) Return the first ChildProduct filtered by the name column
  * @method     ChildProduct findOneByProductid(string $productID) Return the first ChildProduct filtered by the productID column
  * @method     ChildProduct findOneByDescription(string $description) Return the first ChildProduct filtered by the description column
- * @method     ChildProduct findOneBySubcategoryId(int $subcategory_id) Return the first ChildProduct filtered by the subcategory_id column *
+ * @method     ChildProduct findOneByCategoryId(int $category_id) Return the first ChildProduct filtered by the category_id column *
 
  * @method     ChildProduct requirePk($key, ConnectionInterface $con = null) Return the ChildProduct by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProduct requireOne(ConnectionInterface $con = null) Return the first ChildProduct matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -68,14 +68,14 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProduct requireOneByName(string $name) Return the first ChildProduct filtered by the name column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProduct requireOneByProductid(string $productID) Return the first ChildProduct filtered by the productID column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProduct requireOneByDescription(string $description) Return the first ChildProduct filtered by the description column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildProduct requireOneBySubcategoryId(int $subcategory_id) Return the first ChildProduct filtered by the subcategory_id column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildProduct requireOneByCategoryId(int $category_id) Return the first ChildProduct filtered by the category_id column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildProduct[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildProduct objects based on current ModelCriteria
  * @method     ChildProduct[]|ObjectCollection findById(int $id) Return ChildProduct objects filtered by the id column
  * @method     ChildProduct[]|ObjectCollection findByName(string $name) Return ChildProduct objects filtered by the name column
  * @method     ChildProduct[]|ObjectCollection findByProductid(string $productID) Return ChildProduct objects filtered by the productID column
  * @method     ChildProduct[]|ObjectCollection findByDescription(string $description) Return ChildProduct objects filtered by the description column
- * @method     ChildProduct[]|ObjectCollection findBySubcategoryId(int $subcategory_id) Return ChildProduct objects filtered by the subcategory_id column
+ * @method     ChildProduct[]|ObjectCollection findByCategoryId(int $category_id) Return ChildProduct objects filtered by the category_id column
  * @method     ChildProduct[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -174,7 +174,7 @@ abstract class ProductQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, name, productID, description, subcategory_id FROM product WHERE id = :p0';
+        $sql = 'SELECT id, name, productID, description, category_id FROM product WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -381,18 +381,18 @@ abstract class ProductQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the subcategory_id column
+     * Filter the query on the category_id column
      *
      * Example usage:
      * <code>
-     * $query->filterBySubcategoryId(1234); // WHERE subcategory_id = 1234
-     * $query->filterBySubcategoryId(array(12, 34)); // WHERE subcategory_id IN (12, 34)
-     * $query->filterBySubcategoryId(array('min' => 12)); // WHERE subcategory_id > 12
+     * $query->filterByCategoryId(1234); // WHERE category_id = 1234
+     * $query->filterByCategoryId(array(12, 34)); // WHERE category_id IN (12, 34)
+     * $query->filterByCategoryId(array('min' => 12)); // WHERE category_id > 12
      * </code>
      *
-     * @see       filterBySubcategory()
+     * @see       filterByCategory()
      *
-     * @param     mixed $subcategoryId The value to use as filter.
+     * @param     mixed $categoryId The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -400,16 +400,16 @@ abstract class ProductQuery extends ModelCriteria
      *
      * @return $this|ChildProductQuery The current query, for fluid interface
      */
-    public function filterBySubcategoryId($subcategoryId = null, $comparison = null)
+    public function filterByCategoryId($categoryId = null, $comparison = null)
     {
-        if (is_array($subcategoryId)) {
+        if (is_array($categoryId)) {
             $useMinMax = false;
-            if (isset($subcategoryId['min'])) {
-                $this->addUsingAlias(ProductTableMap::COL_SUBCATEGORY_ID, $subcategoryId['min'], Criteria::GREATER_EQUAL);
+            if (isset($categoryId['min'])) {
+                $this->addUsingAlias(ProductTableMap::COL_CATEGORY_ID, $categoryId['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($subcategoryId['max'])) {
-                $this->addUsingAlias(ProductTableMap::COL_SUBCATEGORY_ID, $subcategoryId['max'], Criteria::LESS_EQUAL);
+            if (isset($categoryId['max'])) {
+                $this->addUsingAlias(ProductTableMap::COL_CATEGORY_ID, $categoryId['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -420,48 +420,48 @@ abstract class ProductQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(ProductTableMap::COL_SUBCATEGORY_ID, $subcategoryId, $comparison);
+        return $this->addUsingAlias(ProductTableMap::COL_CATEGORY_ID, $categoryId, $comparison);
     }
 
     /**
-     * Filter the query by a related \Subcategory object
+     * Filter the query by a related \Category object
      *
-     * @param \Subcategory|ObjectCollection $subcategory The related object(s) to use as filter
+     * @param \Category|ObjectCollection $category The related object(s) to use as filter
      * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @throws \Propel\Runtime\Exception\PropelException
      *
      * @return ChildProductQuery The current query, for fluid interface
      */
-    public function filterBySubcategory($subcategory, $comparison = null)
+    public function filterByCategory($category, $comparison = null)
     {
-        if ($subcategory instanceof \Subcategory) {
+        if ($category instanceof \Category) {
             return $this
-                ->addUsingAlias(ProductTableMap::COL_SUBCATEGORY_ID, $subcategory->getId(), $comparison);
-        } elseif ($subcategory instanceof ObjectCollection) {
+                ->addUsingAlias(ProductTableMap::COL_CATEGORY_ID, $category->getId(), $comparison);
+        } elseif ($category instanceof ObjectCollection) {
             if (null === $comparison) {
                 $comparison = Criteria::IN;
             }
 
             return $this
-                ->addUsingAlias(ProductTableMap::COL_SUBCATEGORY_ID, $subcategory->toKeyValue('PrimaryKey', 'Id'), $comparison);
+                ->addUsingAlias(ProductTableMap::COL_CATEGORY_ID, $category->toKeyValue('PrimaryKey', 'Id'), $comparison);
         } else {
-            throw new PropelException('filterBySubcategory() only accepts arguments of type \Subcategory or Collection');
+            throw new PropelException('filterByCategory() only accepts arguments of type \Category or Collection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the Subcategory relation
+     * Adds a JOIN clause to the query using the Category relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return $this|ChildProductQuery The current query, for fluid interface
      */
-    public function joinSubcategory($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function joinCategory($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Subcategory');
+        $relationMap = $tableMap->getRelation('Category');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -476,14 +476,14 @@ abstract class ProductQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'Subcategory');
+            $this->addJoinObject($join, 'Category');
         }
 
         return $this;
     }
 
     /**
-     * Use the Subcategory relation Subcategory object
+     * Use the Category relation Category object
      *
      * @see useQuery()
      *
@@ -491,13 +491,13 @@ abstract class ProductQuery extends ModelCriteria
      *                                   to be used as main alias in the secondary query
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return \SubcategoryQuery A secondary query class using the current class as primary query
+     * @return \CategoryQuery A secondary query class using the current class as primary query
      */
-    public function useSubcategoryQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    public function useCategoryQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
     {
         return $this
-            ->joinSubcategory($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Subcategory', '\SubcategoryQuery');
+            ->joinCategory($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Category', '\CategoryQuery');
     }
 
     /**

@@ -18,40 +18,6 @@ CREATE TABLE `category`
 ) ENGINE=InnoDB;
 
 -- ---------------------------------------------------------------------
--- subcategory
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `subcategory`;
-
-CREATE TABLE `subcategory`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(65) NOT NULL,
-    PRIMARY KEY (`id`),
-    UNIQUE INDEX `subcategory_u_d94269` (`name`)
-) ENGINE=InnoDB;
-
--- ---------------------------------------------------------------------
--- category_subcategory
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `category_subcategory`;
-
-CREATE TABLE `category_subcategory`
-(
-    `category_id` INTEGER NOT NULL,
-    `subcategory_id` INTEGER NOT NULL,
-    INDEX `category_subcategory_fi_904832` (`category_id`),
-    INDEX `category_subcategory_fi_49dd8c` (`subcategory_id`),
-    CONSTRAINT `category_subcategory_fk_904832`
-        FOREIGN KEY (`category_id`)
-        REFERENCES `category` (`id`),
-    CONSTRAINT `category_subcategory_fk_49dd8c`
-        FOREIGN KEY (`subcategory_id`)
-        REFERENCES `subcategory` (`id`)
-) ENGINE=InnoDB;
-
--- ---------------------------------------------------------------------
 -- product
 -- ---------------------------------------------------------------------
 
@@ -63,13 +29,13 @@ CREATE TABLE `product`
     `name` VARCHAR(65) NOT NULL,
     `productID` VARCHAR(65),
     `description` TEXT,
-    `subcategory_id` INTEGER NOT NULL,
+    `category_id` INTEGER NOT NULL,
     PRIMARY KEY (`id`),
     UNIQUE INDEX `product_u_7c0b83` (`productID`),
-    INDEX `product_fi_49dd8c` (`subcategory_id`),
-    CONSTRAINT `product_fk_49dd8c`
-        FOREIGN KEY (`subcategory_id`)
-        REFERENCES `subcategory` (`id`)
+    INDEX `product_fi_904832` (`category_id`),
+    CONSTRAINT `product_fk_904832`
+        FOREIGN KEY (`category_id`)
+        REFERENCES `category` (`id`)
 ) ENGINE=InnoDB;
 
 # This restores the fkey checks, after having unset them earlier

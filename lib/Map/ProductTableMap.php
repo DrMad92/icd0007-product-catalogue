@@ -92,9 +92,9 @@ class ProductTableMap extends TableMap
     const COL_DESCRIPTION = 'product.description';
 
     /**
-     * the column name for the subcategory_id field
+     * the column name for the category_id field
      */
-    const COL_SUBCATEGORY_ID = 'product.subcategory_id';
+    const COL_CATEGORY_ID = 'product.category_id';
 
     /**
      * The default string format for model objects of the related table
@@ -108,10 +108,10 @@ class ProductTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Name', 'Productid', 'Description', 'SubcategoryId', ),
-        self::TYPE_CAMELNAME     => array('id', 'name', 'productid', 'description', 'subcategoryId', ),
-        self::TYPE_COLNAME       => array(ProductTableMap::COL_ID, ProductTableMap::COL_NAME, ProductTableMap::COL_PRODUCTID, ProductTableMap::COL_DESCRIPTION, ProductTableMap::COL_SUBCATEGORY_ID, ),
-        self::TYPE_FIELDNAME     => array('id', 'name', 'productID', 'description', 'subcategory_id', ),
+        self::TYPE_PHPNAME       => array('Id', 'Name', 'Productid', 'Description', 'CategoryId', ),
+        self::TYPE_CAMELNAME     => array('id', 'name', 'productid', 'description', 'categoryId', ),
+        self::TYPE_COLNAME       => array(ProductTableMap::COL_ID, ProductTableMap::COL_NAME, ProductTableMap::COL_PRODUCTID, ProductTableMap::COL_DESCRIPTION, ProductTableMap::COL_CATEGORY_ID, ),
+        self::TYPE_FIELDNAME     => array('id', 'name', 'productID', 'description', 'category_id', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, )
     );
 
@@ -122,10 +122,10 @@ class ProductTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Name' => 1, 'Productid' => 2, 'Description' => 3, 'SubcategoryId' => 4, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'name' => 1, 'productid' => 2, 'description' => 3, 'subcategoryId' => 4, ),
-        self::TYPE_COLNAME       => array(ProductTableMap::COL_ID => 0, ProductTableMap::COL_NAME => 1, ProductTableMap::COL_PRODUCTID => 2, ProductTableMap::COL_DESCRIPTION => 3, ProductTableMap::COL_SUBCATEGORY_ID => 4, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'name' => 1, 'productID' => 2, 'description' => 3, 'subcategory_id' => 4, ),
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Name' => 1, 'Productid' => 2, 'Description' => 3, 'CategoryId' => 4, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'name' => 1, 'productid' => 2, 'description' => 3, 'categoryId' => 4, ),
+        self::TYPE_COLNAME       => array(ProductTableMap::COL_ID => 0, ProductTableMap::COL_NAME => 1, ProductTableMap::COL_PRODUCTID => 2, ProductTableMap::COL_DESCRIPTION => 3, ProductTableMap::COL_CATEGORY_ID => 4, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'name' => 1, 'productID' => 2, 'description' => 3, 'category_id' => 4, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, )
     );
 
@@ -150,7 +150,7 @@ class ProductTableMap extends TableMap
         $this->addColumn('name', 'Name', 'VARCHAR', true, 65, null);
         $this->addColumn('productID', 'Productid', 'VARCHAR', false, 65, null);
         $this->addColumn('description', 'Description', 'LONGVARCHAR', false, null, null);
-        $this->addForeignKey('subcategory_id', 'SubcategoryId', 'INTEGER', 'subcategory', 'id', true, null, null);
+        $this->addForeignKey('category_id', 'CategoryId', 'INTEGER', 'category', 'id', true, null, null);
     } // initialize()
 
     /**
@@ -158,10 +158,10 @@ class ProductTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Subcategory', '\\Subcategory', RelationMap::MANY_TO_ONE, array (
+        $this->addRelation('Category', '\\Category', RelationMap::MANY_TO_ONE, array (
   0 =>
   array (
-    0 => ':subcategory_id',
+    0 => ':category_id',
     1 => ':id',
   ),
 ), null, null, null, false);
@@ -312,13 +312,13 @@ class ProductTableMap extends TableMap
             $criteria->addSelectColumn(ProductTableMap::COL_NAME);
             $criteria->addSelectColumn(ProductTableMap::COL_PRODUCTID);
             $criteria->addSelectColumn(ProductTableMap::COL_DESCRIPTION);
-            $criteria->addSelectColumn(ProductTableMap::COL_SUBCATEGORY_ID);
+            $criteria->addSelectColumn(ProductTableMap::COL_CATEGORY_ID);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.productID');
             $criteria->addSelectColumn($alias . '.description');
-            $criteria->addSelectColumn($alias . '.subcategory_id');
+            $criteria->addSelectColumn($alias . '.category_id');
         }
     }
 

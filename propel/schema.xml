@@ -10,25 +10,6 @@
             <unique-column name="name"/>
         </unique>
     </table>
-
-    <table name="subcategory" phpName="Subcategory">
-        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
-        <column name="name" type="varchar" size="65" required="true"/>
-        <unique>
-            <unique-column name="name"/>
-        </unique>
-    </table>
-
-    <table name="category_subcategory" phpName="CategorySubcategory">
-        <column name="category_id" type="integer" required="true"/>
-        <foreign-key foreignTable="category">
-            <reference local="category_id" foreign="id"/>
-        </foreign-key>
-        <column name="subcategory_id" type="integer" required="true"/>
-        <foreign-key foreignTable="subcategory">
-            <reference local="subcategory_id" foreign="id"/>
-        </foreign-key>
-    </table>
     
     <table name="product" phpName="Product">
         <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
@@ -38,9 +19,9 @@
             <unique-column name="productID"/>
         </unique>
         <column name="description" type="longvarchar"/>
-        <column name="subcategory_id" type="integer" required="true"/>
-        <foreign-key foreignTable="subcategory">
-            <reference local="subcategory_id" foreign="id"/>
+        <column name="category_id" type="integer" required="true"/>
+        <foreign-key foreignTable="category">
+            <reference local="category_id" foreign="id"/>
         </foreign-key>
     </table>
 </database>
