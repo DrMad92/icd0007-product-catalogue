@@ -10,14 +10,12 @@ $twig = new \Twig\Environment($loader, [
     'debug' => true
 ]);
 
-$cat = new Category();
-
-$q = CategoryQuery::create()
+$query = CategoryQuery::create()
     ->orderByName()
     ->find(); 
 
 $categoryList = array();
-foreach ($q as $v){
+foreach ($query as $v){
     array_push($categoryList, $v->getAttributes());
 }
 
