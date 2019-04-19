@@ -18,11 +18,4 @@ function openForm(id) {
 function closeForm(id) {
     document.getElementById(id).style.display = "none";
 }
-function addSubcategoryField(id) {
-    var child = document.getElementsByClassName("sublist-container")[0].cloneNode(true);
-    document.getElementById(id).appendChild(child);
-}
-function removeSubcategoryField(element) {
-    var parent = element.parentNode
-    parent.parentNode.removeChild(parent);
-}
+

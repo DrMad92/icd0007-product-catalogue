@@ -6,7 +6,6 @@ require_once '../propel/config.php';
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $category = $_POST['name'];
-    $subcategory = $_POST['sub-list'];
     unset($_POST);
     
     $cat = new Category();

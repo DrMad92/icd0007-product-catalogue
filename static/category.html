@@ -24,16 +24,6 @@
                             <h1>Add category</h1>
                             <label for="name"><b>Name</b></label>
                             <input type="text" placeholder="Enter category name" name="name" required>
-                        
-                            <label for="sub-list[]"><b>Subcategory list</b></label>
-                            <div id="sublist-id" name="sub-list[]">
-                                <div class="sublist-container" name="sub-list[]">
-                                    <input type="text" class="sub-text" placeholder="Add subcategory" required>
-                                    <button type="button" class="sub-btn" onclick="addSubcategoryField('sublist-id')">&#10133</button>
-                                    <button type="button" class="sub-btn" onclick="removeSubcategoryField(this)">&#10134</button>
-                                </div>
-                            </div>
-                        
                             <button type="submit" class="btn">Add</button>
                             <button type="button" class="btn cancel" onclick="closeForm('addForm')">Close</button>
                         </form>

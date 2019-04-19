@@ -48,34 +48,6 @@
   margin-bottom:10px;
   opacity: 0.8;
 }
-.form-container .sublist-container {
-  position: relative;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-bottom:10px;
-  opacity: 0.8;
-  margin: 5px 0 22px 0;
-}
-
-.sublist-container .sub-text {
-  position: relative;
-  float: left;
-  border: none;
-  cursor: pointer;
-  width: 80%;
-  margin-bottom:10px;
-  background: #f1f1f1;
-  padding: 15px;
-}
-.sublist-container .sub-btn {
-  position: relative;
-  border: none;
-  cursor: pointer;
-  width: 15%;
-  opacity: 0.7;
-  margin: 1px;
-}
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
@@ -83,6 +55,6 @@
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover, .sub-btn:hover {
+.form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
