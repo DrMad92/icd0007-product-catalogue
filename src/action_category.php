@@ -31,10 +31,10 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         die(json_encode(array('message' => 'Success', 'code' => 200)));    
     
     } elseif(isset($_POST['save'])) {
-        if (empty($_POST['name'])){
+        if (empty($_POST['name']) || empty($_POST['category'])){
             header('HTTP/1.1 492 Empty name');
             header('Content-Type: application/json; charset=UTF-8');
-            die(json_encode(array('message' => 'Empty rename', 'code' => 492)));
+            die(json_encode(array('message' => 'Empty name', 'code' => 492)));
         }
         $category = $_POST['category'];
         $newName = $_POST['name'];
@@ -50,6 +50,11 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         die(json_encode(array('message' => 'Renamed', 'code' => 200)));
 
     } elseif (isset($_POST['delete'])){
+        if (empty($_POST['category'])){
+            header('HTTP/1.1 492 Empty name');
+            header('Content-Type: application/json; charset=UTF-8');
+            die(json_encode(array('message' => 'Empty name', 'code' => 492)));
+        }
         $category = $_POST['category'];
         unset($_POST);
 
