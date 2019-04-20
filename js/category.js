@@ -4,7 +4,7 @@ $(document).ready(function() {
         $(".category").hide();
         $("#" + id + "-title").show();
         $("#" + id).show();
-        $("#" + id).html('<object type="text/html" data="static/products.html?category=' + id + '" ></object>');
+        $("#" + id).html('<object type="text/html" data="src/products.php?category=' + id + '" ></object>');
     });
     $("#addForm-add-button").click(function(){
         $("#addForm").show();
