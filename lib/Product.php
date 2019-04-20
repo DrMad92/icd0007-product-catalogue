@@ -14,5 +14,14 @@ use Base\Product as BaseProduct;
  */
 class Product extends BaseProduct
 {
+    public function getAttributes(){
+        $name = $this -> getName();
+        $productID = $this -> getProductid();
+        $description = $this -> getDescription();
+        $categoryName =$this -> getCategory()
+                        -> getName();
+
+        return ["name" => $name, "productID" => $productID, "description" => $description, "category" => $categoryName];
+    }
 
 }
