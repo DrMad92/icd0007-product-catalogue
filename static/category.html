@@ -39,7 +39,7 @@
                 </a>
             </td>
             <td id="category-title">
-                    <div class="category" id="welcome-title" style="display:block">
+                    <div class="category" id="all-title" style="display:block">
                         <h1>Product catalogue</h1>
                     </div>
                     {% for category in categoryList %}
@@ -52,6 +52,7 @@
         <tr>
             <td id="category-list" rowspan="2">
                     <ul id="category-list">
+                    <li><button class="w3-bar-item w3-button" id="all-tree">All</button></li>
                         {% for category in categoryList %}
                         <li><button class="w3-bar-item w3-button" id="{{ category.treeID }}">{{ category.name }}</button></li>
                         {% endfor %}
@@ -60,8 +61,8 @@
         </tr>
         <tr>
             <td id="category-view">
-                <div class="category" style="display:block">
-                        <object type="text/html" src="src/products.php?category=all" ></object>
+                <div class="category" id="all" style="display:block">
+                        <object type="text/html" data="src/products.php?category=all" ></object>
                 </div>
                 {% for category in categoryList %}
                 <div class="category" id="{{ category.name }}" style="display:none">               

@@ -34,7 +34,8 @@ if($_SERVER['REQUEST_METHOD'] == "GET")
         array_push($productList, $v->getAttributes());
     }
     echo $twig->render('products.html',
-            ['productsList' => $productsList]);
+            ['productList' => $productList,
+            'category' => $searchCategory]);
 }
 
 ?>

@@ -1,4 +1,12 @@
 $(document).ready(function() {
+    let category = "all";
+    let searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has('category')){
+        category = searchParams.get('category');
+    }
+    if (category != "all") {
+        $("#addForm-add-button").show();
+    }
     $("#addForm-add-button").click(function(){
         $("#addForm").show();
     });
@@ -15,9 +23,6 @@ $(document).ready(function() {
                method: method,
                url: url,
                data: form.serialize(),
-               error: function(err){
-                    alert(err.responseJSON.message);
-               },
                success: function(resp)
                {
                     alert(resp.message);
