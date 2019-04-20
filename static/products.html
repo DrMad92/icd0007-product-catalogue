@@ -1,171 +1,67 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="../style/products.css"/>
+<html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../style/products.css"/>
     <title>Products</title>
 </head>
 <body>
-<div id="container">
-     <header id="header" class="navbar navbar-static-top">
-        <div class="container-fluid">
-            <div id="header-picture" class="navbar-header">
-                <a class="navbar-picture" href="products.html">
-                    <!-- img to top left corner -->
-                    <img src="#" alt="Product Catalogue" title="Product Catalogue">
-                </a>
-            </div>
-        </div>
-    </header>
-<div id="content">
-    <div class="page-header">
-        <div class="container-fluid">
-            <div class="pull-right"> <!-- Buttons to put right side -->
-                <button class="" type="button" onclick="window.location.href='../static/add_new_product.html'">Add New</button>
-                <button class="" type="button">Delete</button>
-            </div>
-            <h1>Products</h1>
-        </div>
-            <div class="container-fluid">
-                <form id="form-product">
-                    <div class="responsive-table">
-                        <table class="table table-border table-hover">
-                            <thead>
-                                <tr name="table-row-1">
-                                    <td class="text-center">
-                                        <!--<input type="checkbox" onclick=""> should select all products onclick -->
-                                    </td>
-                                    <td class="text-center resize-product-id">
-                                        <a class="asc" href="#" title="asc">Product ID</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="asc" href="#" title="asc">Product Name</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="asc" href="#" title="asc">Category Name</a>
-                                    </td>
-                                    <td class="text-center">
-                                        <a class="asc" href="#" title="asc">SKU</a>
-                                    </td>
-                                    <td class="text-center">
-                                        Description
-                                    </td>          
-                                </tr>
-                                <tr name="table-row-filter">
-                                    <td class="text-center">
-                                        <input type="checkbox" onclick="">
-                                    </td>
-                                    <td>
-                                        <div class="range-line">
-                                            <span class="label">From:</span>
-                                            <input type="text" name="product-id[from]" id="product-filter-product-id-from" value="" class="input-text" type="text" name="product-id[from]" value="">
-                                        </div>
-                                        <div class="range-line">
-                                            <span class="label">To:</span>
-                                            <input id="product-filter-product-id-to" class="input-text" type="text" name="product-id[to]" value="">
-                                            </div>
-                                    </td>
-                                    <td>
-                                        <div class="field-name">
-                                            <input id="product-filter-name" class="input-text" type="text" name="product-name" value="">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <select id="category-name" class="no-changes" name="category-name">
-                                        <option value="">Cloths</option>
-                                        <option value="">Decoration</option>
-                                        <option value="">Electronics</option>
-                                        <option value="">Computers</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <div class="field-sku">
-                                            <input id="prodcut-filter-sku" class="input-text" type="text" name="sku" value="">
-                                        </div>
-                                    </td>
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">
-                                        <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <!-- product id -->
-                                    <td class="text-center">
-                                        905
-                                    </td>
-                                    <!-- product name -->
-                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
-                                    <!-- category name-->
-                                    <td class="text-center">Cloth</td>
-                                    <!-- SKU -->
-                                    <td class="text-center">
-                                        <span class="">msj006c-Royal Blue-L</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <textarea autofocus rows="0" cols="50" placeholder="Description">
-                                        </textarea> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">
-                                        <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <!-- product id -->
-                                    <td class="text-center">
-                                        905
-                                    </td>
-                                        <!-- product name -->
-                                        <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
-                                        <!-- category name-->
-                                        <td class="text-center">Cloth</td>
-                                        <!-- SKU -->
-                                        <td class="text-center">
-                                            <span class="">msj006c-Royal Blue-L</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    <td class="text-center">
-                                    <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <!-- product id -->
-                                    <td class="text-center">
-                                    905
-                                    </td>
-                                    <!-- product name -->
-                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
-                                    <!-- category name-->
-                                    <td class="text-center">Cloth</td>
-                                    <!-- SKU -->
-                                    <td class="text-center">
-                                    <span class="">msj006c-Royal Blue-L</span>
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <td class="text-center">
-                                    <input type="checkbox" name="selected[]" value="" />
-                                    </td>
-                                    <!-- product id -->
-                                    <td class="text-center">
-                                    905
-                                    </td>
-                                    <!-- product name -->
-                                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
-                                    <!-- category name-->
-                                    <td class="text-center">Cloth</td>
-                                    <!-- SKU -->
-                                    <td class="text-center">
-                                    <span class="">msj006c-Royal Blue-L</span>
-                                    </td>
-                                    </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </form>
-            </div>
-        </div>
-</div>
-</div>
-<footer>
-</footer>
+    <div>
+        <button class="" type="button" onclick="window.location.href='../static/add_new_product.html'">Add New</button>
+        <button class="" type="button">Delete</button>
+    </div>
+    <div class="container-fluid">
+        <table >
+            <thead>
+                <tr name="table-row-1">
+                    <td class="text-center">
+                        <!--<input type="checkbox" onclick=""> should select all products onclick -->
+                    </td>
+                    <td class="text-center resize-product-id">
+                        <a class="asc" href="#" title="asc">Product ID</a>
+                    </td>
+                    <td class="text-center">
+                        <a class="asc" href="#" title="asc">Product Name</a>
+                    </td>
+                    <td class="text-center">
+                        Description
+                    </td>          
+                </tr>
+                <tr name="table-row-filter">
+                    <td class="text-center">
+                        <input type="checkbox" onclick="">
+                    </td>
+                    <td>
+                        <div class="range-line">
+                            <span class="label">ID filter:</span>
+                            <input type="text" name="product-id[from]" id="product-filter-product-id-from" value="" class="input-text">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="field-name">
+                            <input id="product-filter-name" class="input-text" type="text" name="product-name" value="">
+                        </div>
+                    </td>
+                    </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" name="selected[]" value="" />
+                    </td>
+                    <!-- product id -->
+                    <td class="text-center">
+                        905
+                    </td>
+                    <!-- product name -->
+                    <td class="text-center">Plaid Cotton Shirt-Royal Blue L</td>
+                    <td class="text-center">
+                        <textarea rows="3" cols="30" placeholder="Description">
+                        </textarea> 
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

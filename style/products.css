@@ -7,15 +7,9 @@ body {
     font-size: 13px;
     background-color: #fff;
 }
-
-#container{
-    min-height: 100%;
-    width: 100%;
-    position: relative;
-    background: #f6f6f6;
-    overflow: visible;
-}
-
+textarea {
+    resize: none;
+ }
 .container-fluid{
     padding: 0 20px;
     margin-left: auto;
