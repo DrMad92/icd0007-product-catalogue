@@ -5,9 +5,10 @@
     <link href="static/favicon.ico" rel="icon" type="image/x-icon"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style/categories.css">
-    <link rel="stylesheet" href="style/add_category.css">
+    <link rel="stylesheet" href="style/add_form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/category.js"></script>
+    <title>Product catalogue</title>
 </head>
 <body>
     <table border="1">
@@ -24,7 +25,7 @@
                         <form id="addForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Add category</h1>
                             <label for="name"><b>Name</b></label>
-                            <input type="text" placeholder="Only numbers and letters" name="name" required pattern="[A-Za-z0-9]+">
+                            <input type="text" placeholder="Allowed alphanumeric" name="name" required pattern="[A-z0-9À-ž]+">
                             <button type="submit" class="btn">Add</button>
                             <button id="addForm-close-button" type="button" class="btn cancel">Close</button>
                         </form>
@@ -66,7 +67,7 @@
         <tr>
             <td id="category-view">
                 <div class="category" style="display:block">
-                        <object type="text/html" data="static/products.html?category=all" ></object>                
+                        <object type="text/html" src="src/products.php?category=all" ></object>
                 </div>
                 {% for category in categoryList %}
                 <div class="category" id="{{ category.name }}" style="display:none">               
