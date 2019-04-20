@@ -37,12 +37,20 @@
   border: none;
   background: #f1f1f1;
 }
+.form-container select {
+  overflow-y: hidden;
+  width: 100%;
+  padding: 15px 0px 15px 5px;
+  margin: 5px 0 22px 0px;
+  border: none;
+  background: #f1f1f1;
+}
 .form-container textarea{
   width: 100%;
   margin: 5px 0 22px 0px;
   background: #f1f1f1;
 }
-/* Set a style for the submit/login button */
+
 .form-container .btn {
   background-color: #4CAF50;
   color: white;
@@ -54,11 +62,15 @@
   opacity: 0.8;
 }
 
-/* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: white;
+  color: black;
+  border: 1px solid black;
 }
 
+.form-container .delete {
+  background-color: red;
+}
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;

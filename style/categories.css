@@ -38,6 +38,7 @@ table{
 }
 .w3-bar-item {
     padding: 0;
+    padding-left: 5px;
 }
 
 #category-view .category object{
