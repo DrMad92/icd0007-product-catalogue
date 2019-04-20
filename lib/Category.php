@@ -16,9 +16,6 @@ class Category extends BaseCategory
 {
     public function getAttributes(){
         $name = $this -> getName();
-        $treeID = preg_replace('/\s+/', '', strtolower($name));
-        $titleID = $treeID . '-title';
-
-        return ["name" => $name, "titleID" => $titleID, "treeID" => $treeID];
+        return ["name" => $name, "titleID" => $name . '-title', "treeID" => $name . '-tree'];
     }
 }

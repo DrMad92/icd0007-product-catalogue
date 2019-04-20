@@ -13,7 +13,7 @@
     <table border="1">
         <tr>
             <td id="category-buttons">
-                <a onclick="openForm('addForm')" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                <a id="addForm-add-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10133
                     <span class="tooltiptext">
                         Add category
@@ -21,12 +21,12 @@
                 </a>
                 <div class="blackout" id="addForm">
                     <div class="form-popup">
-                        <form action="src/action_category.php" class="form-container" method="POST">
+                        <form id="addForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Add category</h1>
                             <label for="name"><b>Name</b></label>
-                            <input type="text" placeholder="Enter category name" name="name" required>
+                            <input type="text" placeholder="Only numbers and letters" name="name" required pattern="[A-Za-z0-9]">
                             <button type="submit" class="btn">Add</button>
-                            <button type="button" class="btn cancel" onclick="closeForm('addForm')">Close</button>
+                            <button id="addForm-close-button" type="button" class="btn cancel">Close</button>
                         </form>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
             </td>
         </tr>
         <tr>
-            <td id="category-tree" rowspan="2">
+            <td id="category-list" rowspan="2">
                     <ul id="category-list">
                         {% for category in categoryList %}
-                        <li><button class="w3-bar-item w3-button" onclick="openCategory('{{ category.treeID }}')">{{ category.name }}</button></li>
+                        <li><button class="w3-bar-item w3-button" id="{{ category.treeID }}">{{ category.name }}</button></li>
                         {% endfor %}
                     </ul>
             </td>
@@ -66,11 +66,10 @@
         <tr>
             <td id="category-view">
                 <div class="category" style="display:block">
-                        <object type="text/html" data="static/products.html" ></object>                
+                        <object type="text/html" data="static/products.html?category=all" ></object>                
                 </div>
                 {% for category in categoryList %}
-                <div class="category" id="{{ category.treeID }}" style="display:none">
-                        <!-- Call products.php -->                
+                <div class="category" id="{{ category.name }}" style="display:none">               
                 </div>
                 {% endfor %}
             </td>

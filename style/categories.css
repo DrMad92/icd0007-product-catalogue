@@ -10,8 +10,8 @@ table{
     height: inherit;
     width: inherit;
 }
-#category-tree{
-    border: solid 1px black;
+#category-list{
+    /* border: solid 1px black; */
     height: 100%;
     width: 20%;
     vertical-align: top;
