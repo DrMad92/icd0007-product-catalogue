@@ -29,13 +29,14 @@ if($_SERVER['REQUEST_METHOD'] == "GET")
             $category = CategoryQuery::create()->findOneByName($searchCategory);
             $query = $category->getProducts();
     }
-
+    $allCategories = CategoryQuery::create()->find();
+    
     foreach ($query as $v){
         array_push($productList, $v->getAttributes());
     }
     echo $twig->render('products.html',
             ['productList' => $productList,
-            'category' => $searchCategory]);
+            'categoryList' => $allCategories]);
 }
 
 ?>

@@ -20,12 +20,17 @@
             <div class="form-popup">
                 <form id="addForm-submit" action="action_product.php" class="form-container" method="POST">
                     <h1><b>Add product</b></h1>
+                    <label for="category"><b>Choose category</b></label>
+                    <select name="category" size="{{ categoryList | length }}" required>
+                        {% for category in categoryList %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
                     <label for="name">Product name</label>
                     <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9À-ž ]+">
                     <label for="pid">Product ID:</label>
 		            <input type="text" pattern="[A-z0-9À-ž]+" name="pid" placeholder="Allowed alphanumeric">
 		            <textarea form ="addForm-submit" name="description" rows="5" placeholder="Product description"></textarea>
-                    <input type="hidden" name="category" value="{{category}}">
                     <button type="submit" class="btn">Add</button>
                     <button id="addForm-close-button" type="button" class="btn cancel">Close</button>
                 </form>
