@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    $('#products-table').DataTable();
     let category = "all";
     let searchParams = new URLSearchParams(window.location.search);
     if (searchParams.has('category')){

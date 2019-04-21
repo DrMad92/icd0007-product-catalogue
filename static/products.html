@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <link href="../style/products.css" rel="stylesheet" type="text/css"/>
     <link href="../style/add_form.css" rel="stylesheet" type="text/css" >
-    <link href="../style/tabulator.min.css" rel="stylesheet">
-    <script src="../js/tabulator.min.js" type="text/javascript"></script>
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/products.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="../js/products.js" type="text/javascript" defer></script>
 </head>
 <body>
     <div>
@@ -32,45 +32,22 @@
         </div>
     </div>
     <div class="container-fluid">
-        <table >
+        <table id="products-table">
             <thead>
-                <tr name="table-row-1">
-                    <td >
-                        <!--<input type="checkbox" onclick=""> should select all products onclick -->
-                    </td>
-                    <td>
-                        <a href="#" title="asc">Product ID</a>
-                    </td>
-                    <td>
-                        <a href="#" title="asc">Product Name</a>
-                    </td>         
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Category</th>
                 </tr>
-                <tr name="table-row-filter">
-                    <td>
-                        <input type="checkbox" onclick="">
-                    </td>
-                    <td>
-                        <div class="range-line">
-                            <span class="label">ID filter:</span>
-                            <input type="text" name="product-id[from]" id="product-filter-product-id-from" value="" class="input-text">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="field-name">
-                            <input id="product-filter-name" class="input-text" type="text" name="product-name" value="">
-                        </div>
-                    </td>
-                    </tr>
             </thead>
             <tbody>
             {% for product in productList %}
                 <tr>
-                    <td><input type="checkbox" name="selected[]" value="" /></td>
-                    <td >{{ product.productID }}</td>
-                    <td >{{ product.name }}</td>
-                    <td>
-                        <button type="button">Details</button>
-                    </td>
+                    <td>{{ product.productID }}</td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.category }}</td>
                 </tr>
             {% endfor %}
             </tbody>
