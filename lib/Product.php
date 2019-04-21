@@ -18,10 +18,11 @@ class Product extends BaseProduct
         $name = $this -> getName();
         $productID = $this -> getProductid();
         $description = $this -> getDescription();
+        $id = $this -> getPrimaryKey();
         $categoryName =$this -> getCategory()
                         -> getName();
 
-        return ["name" => $name, "productID" => $productID, "description" => $description, "category" => $categoryName];
+        return ["id" => $id, "name" => $name, "productID" => $productID, "description" => $description, "category" => $categoryName];
     }
 
 }
