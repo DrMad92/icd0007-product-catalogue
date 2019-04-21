@@ -25,6 +25,17 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         header('Content-Type: application/json; charset=UTF-8');
         die(json_encode(array('message' => 'Success', 'code' => 200)));
     }
+    elseif(isset($_POST['delete'])){
+        $idList = $_POST['id'];
+        foreach ($idList as $v) {
+            ProductQuery::create()
+                ->findPK($v)
+                ->delete();
+        }
+        header('HTTP/1.1 200 OK');
+        header('Content-Type: application/json; charset=UTF-8');
+        die(json_encode(array('message' => 'Success', 'code' => 200)));
+    }
     
 }
 

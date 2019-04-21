@@ -1,10 +1,6 @@
 $(document).ready(function() {
     $('#products-table').DataTable({
         select: true,
-        colReorder: {
-            fixedColumnsLeft: 1,
-            fixedColumnsRight: 1
-        },
         "columnDefs": [
             {
               "data": null,
@@ -17,14 +13,28 @@ $(document).ready(function() {
             {
                 text: 'Delete selected',
                 action: function ( e, dt, node, config ) {
-                    console.log(node, dt);
-                    alert('delete', dt);
+                    var data = dt.rows('.selected').data();
+                    $("#remove-list tbody").empty();
+                    if (data.length == 0){
+                        $("#deleteForm").find("h1").html('Please select product');
+                        $("#deleteForm").find("[name=delete]").hide();
+                        $("#remove-list").hide();
+                    }else {
+                        $("#deleteForm").find("h1").html('Delete these products?');
+                        $("#deleteForm").find("[name=delete]").show();
+                        $("#remove-list").show();
+                        for(i=0;i<data.length;i++){;
+                            $("#remove-list tbody").append("<tr><td>" + data[i][0] +"</td><td>"+ data[i][2] +"</td></tr>");
+                            $("#remove-list tbody").append('<input type="hidden" name="id[]" value="' + data[i][0] + '"/>');
+                        }
+                    };
+                    $("#deleteForm").show();
                 }
             },
             {
                 text: 'Add new',
                 action: function () {
-                    $("#addForm-add-button").click();
+                    $("#addForm").show();
                 }
             }
         ],
@@ -34,11 +44,9 @@ $(document).ready(function() {
         var id = row.find("td:nth-child(1)").text();
         alert( 'edit:'  + id );
     } );
-    $("#addForm-add-button").click(function(){
-        $("#addForm").show();
-    });
-    $("#addForm-close-button").click(function(){
-        $("#addForm").hide();
+    $("[id$=Form-close-button]").click(function(){
+        var id = $(this).attr('id').replace("-close-button","");
+        $("#" + id).hide();
     });
     $("[type=submit]").click(function(e) {
         e.preventDefault();
