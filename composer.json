@@ -1,4 +1,6 @@
 {
+    "name" : "product-catalogue",
+    "description": "ICD0007 Course Project",
     "require": {
         "twig/twig": "^2.0",
         "propel/propel": "~2.0@dev"
