@@ -46,7 +46,8 @@
                         <form id="editForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Edit category</h1>
                             <label for="category"><b>Choose category</b></label>
-                            <select name="category" size="{{ categoryList | length }}" required>
+                            <select name="category" required>
+                                <option disabled selected value> -- select a category -- </option>
                                 {% for category in categoryList %}
                                 <option value="{{ category.name }}">{{ category.name }}</option>
                                 {% endfor %}
