@@ -74,14 +74,16 @@ $(document).ready(function() {
                url: url,
                data: form.serialize() + "&" + buttonName + "=", // different actions depending on button clicked
                error: function(err){
-                    console.log(err);
-                    alert(err.responseJSON.message + "\nCode: " + err.status);
+                    alertify.error(err.status + ' ' + err.responseJSON.message, 5);
                },
                success: function(resp)
                {
-                    console.log(resp);
-                    alert(resp.message);
-                    window.location.reload();
+                    var msg = alertify.success(resp.message, 0, function(){
+                        window.location.reload();
+                    });
+                    $('body').one('click', function(){
+                        msg.dismiss();
+                    });
                }
              });
     });
