@@ -5,6 +5,7 @@ require_once '../propel/config.php';
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+    // If Add button was pressed to submit Add form
     if (isset($_POST['add'])){
         $pname = $_POST['name'];
         $pid = $_POST['pid'];
@@ -25,8 +26,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         header('Content-Type: application/json; charset=UTF-8');
         die(json_encode(array('message' => 'Success', 'code' => 200)));
     }
+    // If Delete button was pressed to submit Delete form
     elseif(isset($_POST['delete'])){
+        // Get list of product ids to delete
         $idList = $_POST['id'];
+        unset($_POST);
+        // Delete all products in list
         foreach ($idList as $v) {
             ProductQuery::create()
                 ->findPK($v)
@@ -34,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         }
         header('HTTP/1.1 200 OK');
         header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode(array('message' => 'Success', 'code' => 200)));
+        die(json_encode(array('message' => 'Removed', 'code' => 200)));
     }
     
 }
