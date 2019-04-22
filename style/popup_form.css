@@ -1,14 +1,8 @@
-.blackout {
-    height:100%;
-    width:100%;
-    background-color: rgba(0,0,0,0.5);
-    position: fixed;
-    display: none;
-    top: 0;
-    left: 0;
-    z-index: 10;
+.modal {
+  position: absolute;
+  width: auto;
+  height: auto;
 }
-
 /* The popup form - hidden by default */
 .form-popup {
   opacity: 1;
@@ -60,12 +54,6 @@
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
-}
-
-.form-container .cancel {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
 }
 
 .form-container .delete {

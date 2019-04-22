@@ -14,6 +14,11 @@ $(document).ready(function() {
         buttons: [
             {
                 text: 'Delete selected',
+                tag: 'a',
+                attr:  {
+                    rel: 'modal:open',
+                    href: '#deleteForm'
+                },
                 action: function ( e, dt, node, config ) {
                     var data = dt.rows('.selected').data();
                     $("#remove-list tbody").empty();
@@ -30,13 +35,14 @@ $(document).ready(function() {
                             $("#remove-list tbody").append('<input type="hidden" name="id[]" value="' + data[i][0] + '"/>');
                         }
                     };
-                    $("#deleteForm").show();
                 }
             },
             {
                 text: 'Add new',
-                action: function () {
-                    $("#addForm").show();
+                tag: 'a',
+                attr:  {
+                    rel: 'modal:open',
+                    href: '#addForm'
                 }
             }
         ],
@@ -47,11 +53,6 @@ $(document).ready(function() {
         var id = row.find("td:nth-child(1)").text();
         alert( 'edit:'  + id );
     } );
-    // Form close button event
-    $("[id$=Form-close-button]").click(function(){
-        var id = $(this).attr('id').replace("-close-button","");
-        $("#" + id).hide();
-    });
     // Form submit event, captures submit button name as well
     $("[type=submit]").click(function(e) {
         e.preventDefault();

@@ -8,16 +8,6 @@ $(document).ready(function() {
         // Load products page for this category
         $("#" + id).html('<object type="text/html" data="src/products.php?category=' + id + '" ></object>');
     });
-    // Open form click event
-    $("[id$=Form-open-button]").click(function(){
-        var id = $(this).attr('id').replace("-open-button","");
-        $("#" + id).show();
-    });
-    // Close form click event
-    $("[id$=Form-close-button]").click(function(){
-        var id = $(this).attr('id').replace("-close-button","");
-        $("#" + id).hide();
-    });
     // Submit event
     $("[type=submit]").click(function(e) {
         e.preventDefault();

@@ -2,47 +2,46 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="static/favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="static/favicon.ico" rel="icon" type="image/x-icon">
     <link href="https://www.w3schools.com/w3css/4/w3.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" rel="stylesheet">
     <link href="style/categories.css" rel="stylesheet" type="text/css">
     <link href="style/popup_form.css" rel="stylesheet" type="text/css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
     <script src="js/category.js" type="text/javascript"></script>
     <title>Product catalogue</title>
 </head>
 <body>
     <table border="1">
-        <!-- Add button for category -->
         <tr>
             <td id="category-buttons">
-                <a id="addForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                <!-- Add button for category -->
+                <a href="#addForm" rel="modal:open" id="addForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10133
                     <span class="tooltiptext">
                         Add category
                     </span>
                 </a>
                 <!-- Add category form -->
-                <div class="blackout" id="addForm">
-                    <div class="form-popup">
+                    <div class="form-popup modal" id="addForm">
                         <form id="addForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Add category</h1>
                             <label for="name"><b>Name</b></label>
                             <input type="text" placeholder="Allowed alphanumeric" name="name" required pattern="[A-z0-9À-ž]+">
                             <button type="submit" class="btn" name="add">Add</button>
-                            <button id="addForm-close-button" type="button" class="btn cancel">Close</button>
                         </form>
                     </div>
-                </div>
                 <!-- Edit button for category -->
-                <a id="editForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
+                <a href="#editForm" rel="modal:open" id="editForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#9998
                     <span class="tooltiptext">
                         Edit category
                     </span>
                 </a>
                 <!-- Edit category form -->
-                <div class="blackout" id="editForm">
-                    <div class="form-popup">
+                    <div class="form-popup modal" id="editForm">
                         <form id="editForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Edit category</h1>
                             <label for="category"><b>Choose category</b></label>
@@ -55,12 +54,10 @@
                             <label for="name"><b>Rename</b></label>
                             <input type="text" placeholder="Allowed alphanumeric" name="name" pattern="[A-z0-9À-ž]+">
                             <button type="submit" class="btn" name="save">Save</button>
-                            <button id="editForm-close-button" type="button" class="btn cancel">Close</button>
                             <label for="delete"><b>This will also remove ALL products in this category!</b></label>
                             <button id="editForm-delete-button" type="submit" name="delete" class="btn delete">Delete</button>
                         </form>
                     </div>
-                </div>
             </td>
             <!-- Top side, name of of current active category view -->
             <td id="category-title">
@@ -89,11 +86,10 @@
         <tr>
             <td id="category-view">
                 <div class="category" id="all" style="display:block">
-                        <object type="text/html" data="src/products.php?category=all" ></object>
+                        <object type="text/html" data="src/products.php?category=all"></object>
                 </div>
                 {% for category in categoryList %}
-                <div class="category" id="{{ category.name }}" style="display:none">               
-                </div>
+                <div class="category" id="{{ category.name }}" style="display:none"></div>
                 {% endfor %}
             </td>
         </tr>
