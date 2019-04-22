@@ -11,7 +11,8 @@ $(document).ready(function() {
               "defaultContent": "<button>Edit</button>",
               "targets": -1
             },
-            {"width": "10%", "targets": -2}
+            {"width": "10%", "targets": -2},
+            { "orderable": false, "targets": [3,5] },
         ],
         select: {
             style:    'os',
