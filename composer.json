@@ -3,7 +3,8 @@
     "description": "ICD0007 Course Project",
     "require": {
         "twig/twig": "^2.0",
-        "propel/propel": "~2.0@dev"
+        "propel/propel": "~2.0@dev",
+        "symfony/http-foundation" : "^4.2"
     },
     "autoload": {
         "classmap": ["lib/"]
