@@ -12,6 +12,7 @@
 </head>
 <body>
     <table border="1">
+        <!-- Add button for category -->
         <tr>
             <td id="category-buttons">
                 <a id="addForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
@@ -20,6 +21,7 @@
                         Add category
                     </span>
                 </a>
+                <!-- Add category form -->
                 <div class="blackout" id="addForm">
                     <div class="form-popup">
                         <form id="addForm-submit" action="src/action_category.php" class="form-container" method="POST">
@@ -31,12 +33,14 @@
                         </form>
                     </div>
                 </div>
+                <!-- Edit button for category -->
                 <a id="editForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#9998
                     <span class="tooltiptext">
                         Edit category
                     </span>
                 </a>
+                <!-- Edit category form -->
                 <div class="blackout" id="editForm">
                     <div class="form-popup">
                         <form id="editForm-submit" action="src/action_category.php" class="form-container" method="POST">
@@ -57,6 +61,7 @@
                     </div>
                 </div>
             </td>
+            <!-- Top side, name of of current active category view -->
             <td id="category-title">
                     <div class="category" id="all-title" style="display:block">
                         <h1>Product catalogue</h1>
@@ -68,6 +73,7 @@
                     {% endfor %}
             </td>
         </tr>
+        <!-- Left side category list -->
         <tr>
             <td id="category-list" rowspan="2">
                     <ul id="category-list">
@@ -78,6 +84,7 @@
                     </ul>
             </td>
         </tr>
+        <!-- Products view for each category -->
         <tr>
             <td id="category-view">
                 <div class="category" id="all" style="display:block">
