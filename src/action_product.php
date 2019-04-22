@@ -40,6 +40,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
         $catObject = CategoryQuery::create()->findOneByName($category);
         
+        $query = ProductQuery::create()->findByProductid($pid);
+        
+        // If product ID already exists
+        if ($query) {
+            $response->setContent(json_encode(['message' => 'Product id already exists']));
+            $response->setStatusCode(Response::HTTP_PID_EXISTS);
+            $response->send();
+            die();
+        }
+
         $product = new Product();
         $product -> setName($pname);
         $product -> setProductid($pid);
