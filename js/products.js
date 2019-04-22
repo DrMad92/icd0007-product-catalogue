@@ -1,12 +1,17 @@
 $(document).ready(function() {
     // Datatables object for products page
     $('#products-table').DataTable({
+        autoWidth: false,
         "columnDefs": [
+            { "width": "5%", "targets": 0 },
+            { "width": "10%", "targets": 1 },
             {
               "data": null,
+              "width": "5%",
               "defaultContent": "<button>Edit</button>",
               "targets": -1
-            }
+            },
+            {"width": "10%", "targets": -2}
         ],
         select: {
             style:    'os',
