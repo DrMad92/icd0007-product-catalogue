@@ -24,4 +24,28 @@ class Response extends BaseResponse
 
         parent::__construct($content, $status, $headers);
     }
+    
+    public function setStatusCode(int $code, $text = null)
+    {
+        $this->statusCode = $code;
+        if ($this->isInvalid()) {
+            throw new \InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $code));
+        }
+
+        if (null === $text) {
+            $this->statusText = isset(self::$statusTexts[$code]) ? self::$statusTexts[$code] : 'unknown status';
+
+            return $this;
+        }
+
+        if (false === $text) {
+            $this->statusText = '';
+
+            return $this;
+        }
+
+        $this->statusText = $text;
+
+        return $this;
+    }
 }
