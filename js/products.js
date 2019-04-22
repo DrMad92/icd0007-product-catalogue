@@ -61,7 +61,7 @@ $(document).ready(function() {
                data: form.serialize() + "&" + buttonName + "=",
                error: function(err){
                     console.log(err);
-                    alert(err.responseJSON.message);
+                    alert(err.responseJSON.message + "\nCode: " + err.status);
                },
                success: function(resp)
                {

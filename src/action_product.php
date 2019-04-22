@@ -5,8 +5,33 @@ require_once '../propel/config.php';
 
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
+    $response = new Response();
+    $response->headers->set('Content-Type', 'application/json');
+    $response->setCharset('UTF-8');
+
     // If Add button was pressed to submit Add form
     if (isset($_POST['add'])){
+        // If name or category name was not submitted when editing existent category
+        // For whatever reason, html required is not working
+        if (empty($_POST['category'])){
+            $response->setContent(json_encode(['message' => 'Empty category name']));
+            $response->setStatusCode(Response::HTTP_EMPTY_CATEGORY_NAME);
+            $response->send();
+            die();
+        }
+        if (empty($_POST['name'])){
+            $response->setContent(json_encode(['message' => 'Empty name of a product']));
+            $response->setStatusCode(Response::HTTP_EMPTY_NAME);
+            $response->send();
+            die();
+        }
+        if (empty($_POST['pid'])){
+            $response->setContent(json_encode(['message' => 'Empty product id']));
+            $response->setStatusCode(Response::HTTP_EMPTY_PID);
+            $response->send();
+            die();;
+        }
+
         $pname = $_POST['name'];
         $pid = $_POST['pid'];
         $description = $_POST['description'];
@@ -22,9 +47,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $product -> setCategory($catObject);
         $product -> save();
 
-        header('HTTP/1.1 200 OK');
-        header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode(array('message' => 'Success', 'code' => 200)));
+        $response->setContent(json_encode(['message' => 'Created']));
+        $response->setStatusCode(Response::HTTP_CREATED);
+        $response->send();
+        die();
     }
     // If Delete button was pressed to submit Delete form
     elseif(isset($_POST['delete'])){
@@ -37,9 +63,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 ->findPK($v)
                 ->delete();
         }
-        header('HTTP/1.1 200 OK');
-        header('Content-Type: application/json; charset=UTF-8');
-        die(json_encode(array('message' => 'Removed', 'code' => 200)));
+        $response->setContent(json_encode(['message' => 'Removed']));
+        $response->setStatusCode(Response::HTTP_OK);
+        $response->send();
+        die();
     }
     
 }
