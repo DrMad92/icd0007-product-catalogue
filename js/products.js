@@ -1,14 +1,17 @@
 $(document).ready(function() {
     // Datatables object for products page
     $('#products-table').DataTable({
-        select: true,
         "columnDefs": [
             {
               "data": null,
               "defaultContent": "<button>Edit</button>",
               "targets": -1
             }
-          ],
+        ],
+        select: {
+            style:    'os',
+            selector: 'td:not(:last-child)'
+        },
         dom: 'Bfrtip',
         // Delete and Add new buttons definition
         buttons: [
