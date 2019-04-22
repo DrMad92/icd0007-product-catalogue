@@ -1,19 +1,24 @@
 $(document).ready(function() {
+    // Click on left category list
     $("[id$=-tree]").click(function(){
         var id = $(this).attr('id').replace("-tree", "");
         $(".category").hide();
         $("#" + id + "-title").show();
         $("#" + id).show();
+        // Load products page for this category
         $("#" + id).html('<object type="text/html" data="src/products.php?category=' + id + '" ></object>');
     });
+    // Open form click event
     $("[id$=Form-open-button]").click(function(){
         var id = $(this).attr('id').replace("-open-button","");
         $("#" + id).show();
     });
+    // Close form click event
     $("[id$=Form-close-button]").click(function(){
         var id = $(this).attr('id').replace("-close-button","");
         $("#" + id).hide();
     });
+    // Submit event
     $("[type=submit]").click(function(e) {
         e.preventDefault();
         var buttonName = $(this).attr('name');

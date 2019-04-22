@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // Datatables object for products page
     $('#products-table').DataTable({
         select: true,
         "columnDefs": [
@@ -9,6 +10,7 @@ $(document).ready(function() {
             }
           ],
         dom: 'Bfrtip',
+        // Delete and Add new buttons definition
         buttons: [
             {
                 text: 'Delete selected',
@@ -39,15 +41,18 @@ $(document).ready(function() {
             }
         ],
     });
+    // Click on edit button event
     $('#products-table tbody').on( 'click', 'button', function () {
         var row = $(this).closest('tr');
         var id = row.find("td:nth-child(1)").text();
         alert( 'edit:'  + id );
     } );
+    // Form close button event
     $("[id$=Form-close-button]").click(function(){
         var id = $(this).attr('id').replace("-close-button","");
         $("#" + id).hide();
     });
+    // Form submit event, captures submit button name as well
     $("[type=submit]").click(function(e) {
         e.preventDefault();
         var buttonName = $(this).attr('name');
@@ -58,7 +63,7 @@ $(document).ready(function() {
         $.ajax({
                method: method,
                url: url,
-               data: form.serialize() + "&" + buttonName + "=",
+               data: form.serialize() + "&" + buttonName + "=", // different actions depending on button clicked
                error: function(err){
                     console.log(err);
                     alert(err.responseJSON.message + "\nCode: " + err.status);
