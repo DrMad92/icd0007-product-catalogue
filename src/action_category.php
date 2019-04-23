@@ -3,19 +3,24 @@
 require_once '../vendor/autoload.php';
 require_once '../propel/config.php';
 
-if($_SERVER['REQUEST_METHOD'] === "POST")
-{
+// Creates response with message and status code
+function respond($message, $statusCode){
     $response = new Response();
     $response->headers->set('Content-Type', 'application/json');
     $response->setCharset('UTF-8');
+    $response->setContent(json_encode(['message' => $message]));
+    $response->setStatusCode($statusCode);
+    $response->send();
+    die();
+}
+
+if($_SERVER['REQUEST_METHOD'] === "POST")
+{
     // If add button was pressed to post Add form
     if (isset($_POST['add'])) {
         // If empty category name was posted
         if (empty($_POST['name'])){
-            $response->setContent(json_encode(['message' => 'Empty category name']));
-            $response->setStatusCode(Response::HTTP_EMPTY_CATEGORY_NAME);
-            $response->send();
-            die();
+            respond('Empty category name', Response::HTTP_EMPTY_CATEGORY_NAME);
         }
         $category = $_POST['name'];
         unset($_POST);
@@ -25,36 +30,23 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         
         // If category already exists
         if ($query) {
-            $response->setContent(json_encode(['message' => 'Category exists']));
-            $response->setStatusCode(Response::HTTP_CATEGORY_EXISTS);
-            $response->send();
-            die();
+            respond('Category exists', Response::HTTP_CATEGORY_EXISTS);
         }
 
         $cat = new Category();
         $cat -> setName($category);
         $cat -> save();
 
-        $response->setContent(json_encode(['message' => 'Created']));
-        $response->setStatusCode(Response::HTTP_CREATED);
-        $response->send();
-        die();   
-    
+        respond('Created', Response::HTTP_CREATED);
     }
     // If Save button was pressed to post Edit form
     elseif(isset($_POST['save'])) {
         // If name or category name was not submitted when editing existent category
         if (empty($_POST['category'])){
-            $response->setContent(json_encode(['message' => 'Empty category name']));
-            $response->setStatusCode(Response::HTTP_EMPTY_CATEGORY_NAME);
-            $response->send();
-            die();
+            respond('Empty category name', Response::HTTP_EMPTY_CATEGORY_NAME);
         }
         if (empty($_POST['name'])){
-            $response->setContent(json_encode(['message' => 'Empty new name']));
-            $response->setStatusCode(Response::HTTP_EMPTY_NAME);
-            $response->send();
-            die();
+            respond('Empty new name', Response::HTTP_EMPTY_NAME);
         }
         $category = $_POST['category'];
         $newName = $_POST['name'];
@@ -63,32 +55,22 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
 
         // Check if name already taken
         $query = CategoryQuery::create()
-            ->findOneByName($category);
+            ->findOneByName($newName);
         if ($query) {
-            $response->setContent(json_encode(['message' => 'Category exists']));
-            $response->setStatusCode(Response::HTTP_CATEGORY_EXISTS);
-            $response->send();
-            die();
+            respond('Category exists', Response::HTTP_CATEGORY_EXISTS);
         }
         // Update name value of category
         $query = CategoryQuery::create()
             ->filterByName($category)
             ->update(array('Name' => $newName));
     
-        $response->setContent(json_encode(['message' => 'Renamed']));
-        $response->setStatusCode(Response::HTTP_OK);
-        $response->send();
-        die();
-
+        respond('Renamed', Response::HTTP_OK);
     }
     // If Delete button was pressed to post Edit form
     elseif (isset($_POST['delete'])){
         // If category was not choosen to delete
         if (empty($_POST['category'])){
-            $response->setContent(json_encode(['message' => 'Empty category name']));
-            $response->setStatusCode(Response::HTTP_EMPTY_CATEGORY_NAME);
-            $response->send();
-            die();
+            respond('Empty category name', Response::HTTP_EMPTY_CATEGORY_NAME);
         }
         $category = $_POST['category'];
         unset($_POST);
@@ -99,10 +81,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         // Delete category itself
         $query->delete();
         
-        $response->setContent(json_encode(['message' => 'Removed']));
-        $response->setStatusCode(Response::HTTP_OK);
-        $response->send();
-        die();
+        respond('Removed', Response::HTTP_OK);
     }
 }
 
