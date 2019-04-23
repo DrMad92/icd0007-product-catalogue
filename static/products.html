@@ -25,7 +25,11 @@
             <select name="category" required>
                 <option disabled selected value> -- select a category -- </option>
                 {% for category in categoryList %}
-                <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% if category.name == searchCategory %}
+                        <option selected value="{{ category.name }}">{{ category.name }}</option>
+                    {% else %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endif %}
                 {% endfor %}
             </select>
             <label for="name">Product name</label>

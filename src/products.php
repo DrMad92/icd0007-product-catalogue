@@ -42,7 +42,8 @@ if($_SERVER['REQUEST_METHOD'] == "GET")
     }
     echo $twig->render('products.html',
             ['productList' => $productList,
-            'categoryList' => $allCategories]);
+            'categoryList' => $allCategories,
+            'searchCategory' => $searchCategory]);
 }
 
 ?>
