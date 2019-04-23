@@ -61,6 +61,15 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         unset($_POST); 
         $newName = preg_replace("/[^a-zA-Z0-9]+/", "", $newName); // Leave only alpha numeric
 
+        // Check if name already taken
+        $query = CategoryQuery::create()
+            ->findOneByName($category);
+        if ($query) {
+            $response->setContent(json_encode(['message' => 'Category exists']));
+            $response->setStatusCode(Response::HTTP_CATEGORY_EXISTS);
+            $response->send();
+            die();
+        }
         // Update name value of category
         $query = CategoryQuery::create()
             ->filterByName($category)
