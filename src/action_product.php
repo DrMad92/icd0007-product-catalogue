@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 
         $catObject = CategoryQuery::create()->findOneByName($category);
         
-        $query = ProductQuery::create()->findByProductid($pid);
+        $query = ProductQuery::create()->findOneByProductid($pid);
         
         // If product ID already exists
         if ($query) {
