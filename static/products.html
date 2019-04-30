@@ -40,6 +40,30 @@
             <button type="submit" name="add" class="btn">Add</button>
         </form>
     </div>
+    <!-- Edit product form -->
+    <div class="form-popup modal" id="editForm">
+        <form id="editForm-submit" action="action_product.php" class="form-container" method="POST">
+            <h1><b>Edit product</b></h1>
+            <input type="hidden" id="hiddenId" name="id">
+            <label for="category"><b>Choose category</b></label>
+            <select name="category" required>
+                <option disabled selected value> -- select a category -- </option>
+                {% for category in categoryList %}
+                    {% if category.name == searchCategory %}
+                        <option selected value="{{ category.name }}">{{ category.name }}</option>
+                    {% else %}
+                        <option value="{{ category.name }}">{{ category.name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <label for="name">New name</label>
+            <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9À-ž ]+">
+            <label for="pid">New product ID:</label>
+            <input type="text" pattern="[A-z0-9À-ž]+" name="pid" placeholder="Allowed alphanumeric">
+            <textarea form ="editForm-submit" name="description" rows="5" placeholder="Product description"></textarea>
+            <button type="submit" name="save" class="btn">Save</button>
+        </form>
+    </div>
     <!-- Delete products form -->
     <div class="form-popup modal" id="deleteForm">
         <form id="deleteForm-submit" action="action_product.php" class="form-container" method="POST">
