@@ -34,9 +34,9 @@
                 {% endfor %}
             </select>
             <label for="name">Product name</label>
-            <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9À-ž ]+">
+            <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9 ]+">
             <label for="pid">Product ID:</label>
-            <input type="text" pattern="[A-z0-9À-ž]+" name="pid" placeholder="Allowed alphanumeric">
+            <input type="text" pattern="[A-z0-9]+" name="pid" placeholder="Allowed alphanumeric">
             <textarea form ="addForm-submit" name="description" rows="5" placeholder="Product description"></textarea>
             <button type="submit" name="add" class="btn">Add</button>
         </form>
@@ -58,9 +58,9 @@
                 {% endfor %}
             </select>
             <label for="name">New name</label>
-            <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9À-ž ]+">
+            <input type="text" placeholder="Allowed alphanumeric and space" name="name" required pattern="[A-z0-9 ]+">
             <label for="pid">New product ID:</label>
-            <input type="text" pattern="[A-z0-9À-ž]+" name="pid" placeholder="Allowed alphanumeric">
+            <input type="text" pattern="[A-z0-9]+" name="pid" placeholder="Allowed alphanumeric">
             <textarea form ="editForm-submit" name="description" rows="5" placeholder="Product description"></textarea>
             <button type="submit" name="save" class="btn">Save</button>
         </form>

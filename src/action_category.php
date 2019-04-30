@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         }
         $category = $_POST['name'];
         unset($_POST);
-        $category = preg_replace("/[^a-zA-Z0-9]+/", "", $category); // Leave only alpha numeric
+        $category = preg_replace("/[^a-zA-Z0-9 ]+/", "", $category); // Leave only alpha numeric and space
         
         $query = CategoryQuery::create()->findOneByName($category);
         
@@ -51,7 +51,7 @@ if($_SERVER['REQUEST_METHOD'] === "POST")
         $category = $_POST['category'];
         $newName = $_POST['name'];
         unset($_POST); 
-        $newName = preg_replace("/[^a-zA-Z0-9]+/", "", $newName); // Leave only alpha numeric
+        $newName = preg_replace("/[^a-zA-Z0-9 ]+/", "", $newName); // Leave only alpha numeric and space
 
         // Check if name already taken
         $query = CategoryQuery::create()

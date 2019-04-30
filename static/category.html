@@ -32,7 +32,7 @@
                         <form id="addForm-submit" action="src/action_category.php" class="form-container" method="POST">
                             <h1>Add category</h1>
                             <label for="name"><b>Name</b></label>
-                            <input type="text" placeholder="Allowed alphanumeric" name="name" required pattern="[A-z0-9À-ž]+">
+                            <input type="text" placeholder="Allowed alphanumeric" name="name" required pattern="[A-z0-9 ]+">
                             <button type="submit" class="btn" name="add">Add</button>
                         </form>
                     </div>
@@ -55,7 +55,7 @@
                                 {% endfor %}
                             </select>
                             <label for="name"><b>Rename</b></label>
-                            <input type="text" placeholder="Allowed alphanumeric" name="name" pattern="[A-z0-9À-ž]+">
+                            <input type="text" placeholder="Allowed alphanumeric" name="name" pattern="[A-z0-9 ]+">
                             <button type="submit" class="btn" name="save">Save</button>
                             <label for="delete"><b>This will also remove ALL products in this category!</b></label>
                             <button id="editForm-delete-button" type="submit" name="delete" class="btn delete">Delete</button>

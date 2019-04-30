@@ -40,6 +40,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $category = $_POST['category'];
         unset($_POST);
 
+        $pname = preg_replace("/[^a-zA-Z0-9 ]+/", "", $pname); // Leave only alpha numeric and space
+        $pid = preg_replace("/[^a-zA-Z0-9]+/", "", $pid); // Leave only alpha numeric and space
+
         $catObject = CategoryQuery::create()->findOneByName($category);
         
         $query = ProductQuery::create()->findOneByProductid($pid);
@@ -90,6 +93,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         $id = $_POST['id'];
         unset($_POST);
         
+        $pname = preg_replace("/[^a-zA-Z0-9 ]+/", "", $pname); // Leave only alpha numeric and space
+        $pid = preg_replace("/[^a-zA-Z0-9]+/", "", $pid); // Leave only alpha numeric and space
 
         $catObject = CategoryQuery::create()->findOneByName($category);
         // Update values of product
