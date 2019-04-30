@@ -46,7 +46,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         
         // If product ID already exists
         if ($query) {
-            respond('Product id already exists', Response::HTTP_PID_EXISTS);;
+            respond('Product id already exists', Response::HTTP_PID_EXISTS);
         }
 
         $product = new Product();
@@ -70,6 +70,45 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
                 ->delete();
         }
         respond('Removed', Response::HTTP_OK);
+    }
+    // If Save button was pressed to submit Edit form
+    elseif(isset($_POST['save'])){
+        // If name or category name was not submitted when editing existent category
+        if (empty($_POST['category'])){
+            respond('Empty category name', Response::HTTP_EMPTY_CATEGORY_NAME);
+        }
+        if (empty($_POST['name'])){
+            respond('Empty new name', Response::HTTP_EMPTY_NAME);
+        }
+        if (empty($_POST['pid'])){
+            respond('Empty product id', Response::HTTP_EMPTY_PID);
+        }
+        $pname = $_POST['name'];
+        $pid = $_POST['pid'];
+        $description = $_POST['description'];
+        $category = $_POST['category'];
+        $id = $_POST['id'];
+        unset($_POST);
+        
+
+        $catObject = CategoryQuery::create()->findOneByName($category);
+        // Update values of product
+        $editProduct = ProductQuery::create()->findPk($id);
+        $editProduct -> setName($pname);
+        $editProduct -> setDescription($description);
+        $editProduct -> setCategory($catObject);
+
+        // Check if pid already taken or is not changed
+        $query = ProductQuery::create()
+            ->findOneByProductid($pid);
+        if ($query && $query->getProductid() != $editProduct->getProductid()) {
+            respond('Product id already exists', Response::HTTP_PID_EXISTS);
+        }
+
+        $editProduct -> setProductid($pid);
+        $editProduct -> save();
+    
+        respond('Changed product', Response::HTTP_OK);
     }
 }
 
