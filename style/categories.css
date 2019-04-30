@@ -10,23 +10,39 @@ body{
     padding: 0;
 }
 table{
-    /* border: solid 1px black; */
     height: inherit;
     width: inherit;
+    border-collapse: collapse;
+    border: 2px solid #000
 }
+
+tr {
+    border-top: 2px solid #000;
+}
+
+tr + tr {
+    border-top: 1px solid #dddddd;
+}
+
+td {
+    border-left: 2px solid #000000;
+}
+
+td + td {
+    border-left: 1px solid #dddddd;
+}
+
 h1 {
     margin: 0;
 }
 #category-list-id{
-    /* border: solid 1px black; */
     height: 100%;
-    width: 20%;
+    width: 15%;
     vertical-align: top;
 }
 #category-view-id{
-    /* border: solid 1px black; */
     height: 100%;
-    width: 80%;
+    width: 85%;
 }
 #category-list-id ul{
     list-style: none;

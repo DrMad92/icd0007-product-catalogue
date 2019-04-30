@@ -17,7 +17,7 @@
     <title>Product catalogue</title>
 </head>
 <body>
-    <table border="1">
+    <table>
         <tr>
             <td id="category-buttons-id">
                 <!-- Add button for category -->
@@ -76,7 +76,7 @@
         </tr>
         <!-- Left side category list -->
         <tr>
-            <td id="category-list-id" rowspan="2">
+            <td id="category-list-id">
                     <ul>
                     <li><button class="w3-bar-item w3-button" id="all-tree">All</button></li>
                         {% for category in categoryList %}
@@ -84,9 +84,7 @@
                         {% endfor %}
                     </ul>
             </td>
-        </tr>
-        <!-- Products view for each category -->
-        <tr>
+            <!-- Products view for each category -->
             <td id="category-view-id">
                 <div class="category" id="all" style="display:block">
                         <object type="text/html" data="src/products.php?category=all"></object>
