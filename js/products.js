@@ -8,7 +8,7 @@ $(document).ready(function() {
             {
               "data": null,
               "width": "5%",
-              "defaultContent": "<button>Edit</button>",
+              "defaultContent": '<a href="#editForm" rel="modal:open">Edit</a>',
               "targets": -1
             },
             {"width": "10%", "targets": -2},
@@ -57,10 +57,19 @@ $(document).ready(function() {
         ],
     });
     // Click on edit button event
-    $('#products-table tbody').on( 'click', 'button', function () {
+    $('#products-table tbody').on( 'click', 'a', function () {
+        $(this).closest('form').find("input[type=text], textarea").val("");
         var row = $(this).closest('tr');
         var id = row.find("td:nth-child(1)").text();
-        alert( 'edit:'  + id );
+        var pid = row.find("td:nth-child(2)").text();
+        var pname = row.find("td:nth-child(3)").text();
+        var description = row.find("td:nth-child(4)").text();
+        var category = row.find("td:nth-child(5)").text();
+        $("#editForm-submit input[name='id']").val(id);
+        $("#editForm-submit input[name='name']").val(pname);
+        $("#editForm-submit input[name='pid']").val(pid);
+        $("#editForm-submit textarea[name='description']").val(description);
+        $("#editForm-submit select[name='category']").val(category).change();
     } );
     // Form submit event, captures submit button name as well
     $("[type=submit]").click(function(e) {
@@ -69,7 +78,6 @@ $(document).ready(function() {
         var form = $(this).parents('form:first');
         var url = form.attr('action');
         var method = form.attr('method');
-    
         $.ajax({
                method: method,
                url: url,
@@ -86,6 +94,6 @@ $(document).ready(function() {
                         msg.dismiss();
                     });
                }
-             });
+        });
     });
 });
