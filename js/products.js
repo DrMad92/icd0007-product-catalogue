@@ -8,7 +8,9 @@ $(document).ready(function() {
             {
               "data": null,
               "width": "5%",
-              "defaultContent": '<a href="#editForm" rel="modal:open">Edit</a>',
+              "className": "dt-body-center",
+              "defaultContent": '<a href="#editForm" class="w3-btn w3-white w3-padding-small\
+                                w3-border w3-border-green w3-circle w3-tiny" rel="modal:open">Edit</a>',
               "targets": -1
             },
             {"width": "10%", "targets": -2},
@@ -40,8 +42,10 @@ $(document).ready(function() {
                         $("#deleteForm").find("[name=delete]").show();
                         $("#remove-list").show();
                         for(i=0;i<data.length;i++){;
-                            $("#remove-list tbody").append("<tr><td>" + data[i][0] +"</td><td>"+ data[i][2] +"</td></tr>");
-                            $("#remove-list tbody").append('<input type="hidden" name="id[]" value="' + data[i][0] + '"/>');
+                            $("#remove-list tbody").append("<tr><td>" + data[i][0] +
+                                                            "</td><td>"+ data[i][2] +"</td></tr>");
+                            $("#remove-list tbody").append('<input type="hidden" name="id[]" value="' +
+                                                            data[i][0] + '"/>');
                         }
                     };
                 }
