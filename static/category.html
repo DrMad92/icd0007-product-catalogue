@@ -19,7 +19,7 @@
 <body>
     <table border="1">
         <tr>
-            <td id="category-buttons">
+            <td id="category-buttons-id">
                 <!-- Add button for category -->
                 <a href="#addForm" rel="modal:open" id="addForm-open-button" class="tooltip w3-btn w3-white w3-border w3-border-green w3-circle">
                     &#10133
@@ -63,7 +63,7 @@
                     </div>
             </td>
             <!-- Top side, name of of current active category view -->
-            <td id="category-title">
+            <td id="category-title-id">
                     <div class="category" id="all-title" style="display:block">
                         <h1>Product catalogue</h1>
                     </div>
@@ -76,8 +76,8 @@
         </tr>
         <!-- Left side category list -->
         <tr>
-            <td id="category-list" rowspan="2">
-                    <ul id="category-list">
+            <td id="category-list-id" rowspan="2">
+                    <ul>
                     <li><button class="w3-bar-item w3-button" id="all-tree">All</button></li>
                         {% for category in categoryList %}
                         <li><button class="w3-bar-item w3-button" id="{{ category.treeID }}">{{ category.name }}</button></li>
@@ -87,7 +87,7 @@
         </tr>
         <!-- Products view for each category -->
         <tr>
-            <td id="category-view">
+            <td id="category-view-id">
                 <div class="category" id="all" style="display:block">
                         <object type="text/html" data="src/products.php?category=all"></object>
                 </div>
